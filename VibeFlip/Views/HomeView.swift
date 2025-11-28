@@ -16,7 +16,35 @@ struct HomeView: View {
         VStack {
             // Header
             HStack {
+                // Back button (visible when card is open)
+                Button(action: {
+                    closeCard()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .font(.title3)
+                        .foregroundStyle(.primary)
+                        .padding(14)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle()
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [.white.opacity(0.3), .white.opacity(0.05)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 0.5
+                                )
+                        )
+                        .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
+                }
+                .opacity(isCardOpen ? 1 : 0)
+                .disabled(!isCardOpen)
+                .accessibilityLabel("Back")
+                
                 Spacer()
+                
                 Button(action: {
                     HapticManager.shared.impact(style: .light)
                     showSettings = true
@@ -114,6 +142,22 @@ struct HomeView: View {
         } else {
             withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                 isCardOpen = true
+            }
+        }
+    }
+    
+    private func closeCard() {
+        HapticManager.shared.impact(style: .light)
+        
+        if reduceMotion {
+            isCardOpen = false
+            card = nil
+        } else {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                isCardOpen = false
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                card = nil
             }
         }
     }
