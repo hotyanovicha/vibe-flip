@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "1.png",
+      "filename" : "Icon-iOS-Default-1024x1024@1x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -24,7 +24,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "ChatGPT Image Nov 28, 2025, 06_47_07 PM.png",
+      "filename" : "Icon-iOS-Default-1024x1024@1x 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
