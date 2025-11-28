@@ -2,106 +2,139 @@ import SwiftUI
 
 struct CardView: View {
     let card: MotivationCard
+    var style: CardStyle = .classic
     
+    @AppStorage("selectedLanguage") private var selectedLanguage = "English"
+    @Environment(\.colorScheme) var colorScheme
+    
+    // State for animations
     @State private var offset = CGSize.zero
-    @State private var isRippling = false
-    @State private var rippleScale: CGFloat = 1.0
-    @State private var rippleOpacity: Double = 1.0
     
     var body: some View {
-        ZStack {
-            // Ripple Effect Layers
-            if isRippling {
-                ForEach(0..<3) { i in
-                    RoundedRectangle(cornerRadius: 24)
-                        .stroke(Color.blue.opacity(0.5), lineWidth: 2)
-                        .scaleEffect(rippleScale)
-                        .opacity(rippleOpacity)
-                        .animation(
-                            Animation.easeOut(duration: 1.5)
-                                .delay(Double(i) * 0.2)
-                                .repeatForever(autoreverses: false),
-                            value: rippleScale
-                        )
-                }
-            }
-            
-            VStack(spacing: 20) {
+        // Main Card Content
+        VStack(spacing: 20) {
+                // Icon
                 HStack {
                     Spacer()
                     Image(systemName: "sparkles")
-                        .foregroundColor(.secondary)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(textColor.opacity(0.6))
                 }
                 
                 Spacer()
                 
+                // Motivation Text
                 Text(card.text)
-                    .font(.system(size: 24, weight: .bold, design: .default))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.primary)
-                    .padding(.horizontal)
+                    .foregroundColor(textColor)
+                    .padding(.horizontal, 10)
+                    // Subtle glow in dark mode for readability
+                    .shadow(color: colorScheme == .dark ? .white.opacity(0.1) : .clear, radius: 5)
                 
+                // Challenge Section
                 if let action = card.action {
-                    VStack(spacing: 8) {
-                        Text("CHALLENGE")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .tracking(2)
-                            .foregroundColor(.secondary.opacity(0.8))
+                    VStack(spacing: 12) {
+                        Text(LocalizedStrings.getText("challenge", language: selectedLanguage).uppercased())
+                            .font(.system(size: 11, weight: .heavy))
+                            .tracking(2.5)
+                            .foregroundColor(textColor.opacity(0.5))
                         
                         Text(action)
-                            .font(.system(size: 16, weight: .regular, design: .serif))
-                            .italic()
+                            .font(.callout)
+                            .fontWeight(.medium)
                             .multilineTextAlignment(.center)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(textColor.opacity(0.8))
                     }
-                    .padding(.top, 20)
+                    .padding(.top, 16)
+                    .padding(.horizontal)
                 }
                 
                 Spacer()
             }
             .padding(40)
-            .background(Color(UIColor.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 24))
-            .shadow(color: Color.primary.opacity(0.1), radius: 20, x: 0, y: 10)
+            .background(backgroundView)
+            .contentShape(Rectangle()) // Makes entire card area touchable
+            .clipShape(RoundedRectangle(cornerRadius: 32))
+            // Glass shadow
+            .shadow(
+                color: shadowColor,
+                radius: 25,
+                x: 0,
+                y: 12
+            )
+            // 3D rotation effect
             .rotation3DEffect(
-                .degrees(Double(offset.width / 10)),
-                axis: (x: 0, y: 1, z: 0)
+                .degrees(Double(offset.width / 15)),
+                axis: (x: 0, y: 1, z: 0),
+                perspective: 0.8
             )
             .rotation3DEffect(
-                .degrees(Double(-offset.height / 10)),
-                axis: (x: 1, y: 0, z: 0)
+                .degrees(Double(-offset.height / 15)),
+                axis: (x: 1, y: 0, z: 0),
+                perspective: 0.8
             )
-            .gesture(
-                DragGesture()
-                    .onChanged { gesture in
-                        offset = gesture.translation
-                        HapticManager.shared.impact(style: .soft)
-                    }
-                    .onEnded { _ in
-                        withAnimation(.spring()) {
-                            offset = .zero
-                        }
-                    }
+            .gesture(dragGesture)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(card.action != nil ? "\(card.text). \(LocalizedStrings.getText("challenge", language: selectedLanguage)): \(card.action!)" : card.text)
+            .padding(20)
+    }
+    
+    // MARK: - Subviews & Computed Properties
+    
+    // Glass card background (solid color - no touch color change)
+    var backgroundView: some View {
+        RoundedRectangle(cornerRadius: 32)
+            .fill(
+                colorScheme == .dark
+                    ? Color(red: 0.12, green: 0.12, blue: 0.14)
+                    : Color(red: 0.96, green: 0.96, blue: 0.98)
             )
-            .simultaneousGesture(
-                TapGesture()
-                    .onEnded {
-                        withAnimation {
-                            isRippling = true
-                            rippleScale = 2.5
-                            rippleOpacity = 0.0
-                        }
-                        
-                        // Reset animation after it completes
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            isRippling = false
-                            rippleScale = 1.0
-                            rippleOpacity = 1.0
-                        }
-                    }
+            .overlay(
+                // Glass edge highlight
+                RoundedRectangle(cornerRadius: 32)
+                    .stroke(
+                        LinearGradient(
+                            colors: [
+                                Color.white.opacity(colorScheme == .dark ? 0.2 : 0.5),
+                                Color.white.opacity(0.02)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
             )
+    }
+    
+    // Adaptive text color based on background
+    var textColor: Color {
+        switch style {
+        case .classic:
+            return .primary // Automatically black in light, white in dark
+        case .gradient:
+            return .white // White text on colorful background
         }
-        .padding(20)
+    }
+    
+    // Adaptive shadow color
+    var shadowColor: Color {
+        return Color.black.opacity(colorScheme == .dark ? 0.4 : 0.2)
+    }
+    
+    // Drag gesture for 3D effect
+    var dragGesture: some Gesture {
+        DragGesture()
+            .onChanged { gesture in
+                withAnimation(.interactiveSpring()) {
+                    offset = gesture.translation
+                }
+                HapticManager.shared.impact(style: .soft)
+            }
+            .onEnded { _ in
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
+                    offset = .zero
+                }
+            }
     }
 }

@@ -2,10 +2,15 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var showSettings: Bool
-
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
     
     @State private var isCardOpen = false
     @State private var card: MotivationCard?
+    @AppStorage("selectedCardStyle") private var selectedCardStyle = CardStyle.classic.rawValue
+    
+    private var currentCardStyle: CardStyle {
+        CardStyle(rawValue: selectedCardStyle) ?? .classic
+    }
     
     var body: some View {
         VStack {
@@ -17,13 +22,14 @@ struct HomeView: View {
                     showSettings = true
                 }) {
                     Image(systemName: "gearshape")
-                        .font(.system(size: 20))
+                        .font(.title3)
                         .foregroundColor(.primary)
                         .padding()
                         .background(Color(UIColor.secondarySystemBackground))
                         .clipShape(Circle())
                         .shadow(color: Color.primary.opacity(0.05), radius: 5, x: 0, y: 2)
                 }
+                .accessibilityLabel(LocalizedStrings.getText("settings_accessibility", language: selectedLanguage))
             }
             .padding(.horizontal)
             .padding(.top, 20)
@@ -32,7 +38,7 @@ struct HomeView: View {
             
             // Main Content
             if isCardOpen, let card = card {
-                CardView(card: card)
+                CardView(card: card, style: currentCardStyle)
                     .transition(.scale.combined(with: .opacity))
             } else {
                 Button(action: {
@@ -57,6 +63,7 @@ struct HomeView: View {
                     .clipShape(Capsule())
                     .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 5)
                 }
+                .accessibilityHint(LocalizedStrings.getText("card_accessibility_hint", language: selectedLanguage))
             }
             
             Spacer()
@@ -78,11 +85,13 @@ struct HomeView: View {
         let today = Date()
         card = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
         
-        withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+        if reduceMotion {
             isCardOpen = true
+        } else {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+                isCardOpen = true
+            }
         }
-        
-
     }
     
     private func checkIfAlreadyOpened() {

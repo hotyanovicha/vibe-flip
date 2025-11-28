@@ -37,6 +37,37 @@ struct LocalizedStrings {
                 "Русский": "Дай мне вайб",
                 "English": "Give me vibe",
                 "Español": "Dame vibra"
+            ],
+            "challenge": [
+                "Русский": "ВЫЗОВ",
+                "English": "CHALLENGE",
+                "Español": "DESAFÍO"
+            ],
+            "settings_accessibility": [
+                "Русский": "Настройки",
+                "English": "Settings",
+                "Español": "Ajustes"
+            ],
+            "card_accessibility_hint": [
+                "Русский": "Открывает мотивационную карточку дня",
+                "English": "Reveals today's motivational card",
+                "Español": "Revela la tarjeta motivacional del día"
+            ],
+            // Card Style Localization
+            "card_style_section": [
+                "Русский": "СТИЛЬ КАРТОЧКИ",
+                "English": "CARD STYLE",
+                "Español": "ESTILO DE TARJETA"
+            ],
+            "card_style_classic": [
+                "Русский": "Классический",
+                "English": "Classic",
+                "Español": "Clásico"
+            ],
+            "card_style_gradient": [
+                "Русский": "Градиент",
+                "English": "Gradient",
+                "Español": "Gradiente"
             ]
         ]
         
