@@ -9,34 +9,8 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("НАСТРОЕНИЕ")) {
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Image(systemName: "sparkles")
-                                .font(.largeTitle)
-                            Text("Дзен")
-                        }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 2))
-                        
-                        Spacer()
-                        
-                        VStack {
-                            Image(systemName: "flame")
-                                .font(.largeTitle)
-                                .foregroundColor(.gray)
-                            Text("Дерзкий")
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        Spacer()
-                    }
-                    .padding(.vertical)
-                }
                 
-                Section(header: Text("ЯЗЫК")) {
+                Section(header: Text(LocalizedStrings.getText("language_section", language: selectedLanguage))) {
                     ForEach(languages, id: \.self) { language in
                         HStack {
                             Text(language)
@@ -54,7 +28,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationBarTitle("Настройки", displayMode: .inline)
+            .navigationBarTitle(LocalizedStrings.getText("settings_title", language: selectedLanguage), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {

@@ -1,0 +1,1268 @@
+{
+    "English": [
+        {
+            "id": "1",
+            "text": "Your energy is your most valuable resource.",
+            "action": "Rest for 10 minutes without your phone.",
+            "category": "zen"
+        },
+        {
+            "id": "2",
+            "text": "Small steps lead to big changes.",
+            "action": "Do one small task you've been putting off.",
+            "category": "zen"
+        },
+        {
+            "id": "3",
+            "text": "Smile at a stranger.",
+            "action": null,
+            "category": "zen"
+        },
+        {
+            "id": "4",
+            "text": "Silence is also an answer.",
+            "action": "Listen to the silence.",
+            "category": "zen"
+        },
+        {
+            "id": "5",
+            "text": "You are enough just as you are.",
+            "action": "Look in the mirror and say 'I am enough'.",
+            "category": "zen"
+        },
+        {
+            "id": "6",
+            "text": "Breathe in deeply, breathe out slowly.",
+            "action": "Take 5 deep breaths right now.",
+            "category": "zen"
+        },
+        {
+            "id": "7",
+            "text": "Today is a fresh start.",
+            "action": "Write down one goal for today.",
+            "category": "zen"
+        },
+        {
+            "id": "8",
+            "text": "Kindness costs nothing.",
+            "action": "Give a genuine compliment to someone.",
+            "category": "zen"
+        },
+        {
+            "id": "9",
+            "text": "Focus on the present moment.",
+            "action": "Observe 3 things around you in detail.",
+            "category": "zen"
+        },
+        {
+            "id": "10",
+            "text": "Gratitude changes everything.",
+            "action": "List 3 things you are grateful for.",
+            "category": "zen"
+        },
+        {
+            "id": "11",
+            "text": "Your potential is limitless.",
+            "action": "Visualize your dream life for 1 minute.",
+            "category": "zen"
+        },
+        {
+            "id": "12",
+            "text": "Happiness is a choice.",
+            "action": "Do something that makes you smile.",
+            "category": "zen"
+        },
+        {
+            "id": "13",
+            "text": "Don't be afraid to fail.",
+            "action": "Try something new today.",
+            "category": "zen"
+        },
+        {
+            "id": "14",
+            "text": "Trust the process.",
+            "action": "Let go of one worry you can't control.",
+            "category": "zen"
+        },
+        {
+            "id": "15",
+            "text": "You are stronger than you think.",
+            "action": "Recall a time you overcame a challenge.",
+            "category": "zen"
+        },
+        {
+            "id": "16",
+            "text": "Be the reason someone smiles today.",
+            "action": "Send a kind message to a friend.",
+            "category": "zen"
+        },
+        {
+            "id": "17",
+            "text": "Peace begins with a smile.",
+            "action": "Smile at yourself in the mirror.",
+            "category": "zen"
+        },
+        {
+            "id": "18",
+            "text": "Every day is a second chance.",
+            "action": "Forgive yourself for a past mistake.",
+            "category": "zen"
+        },
+        {
+            "id": "19",
+            "text": "Listen more than you speak.",
+            "action": "Ask someone how they are and really listen.",
+            "category": "zen"
+        },
+        {
+            "id": "20",
+            "text": "Simplicity is the ultimate sophistication.",
+            "action": "Declutter one small area of your space.",
+            "category": "zen"
+        },
+        {
+            "id": "21",
+            "text": "Believe you can and you're halfway there.",
+            "action": "Write down 'I can do this' on a sticky note.",
+            "category": "zen"
+        },
+        {
+            "id": "22",
+            "text": "The best view comes after the hardest climb.",
+            "action": "Take the stairs instead of the elevator.",
+            "category": "zen"
+        },
+        {
+            "id": "23",
+            "text": "Stars can't shine without darkness.",
+            "action": "Find a lesson in a recent difficulty.",
+            "category": "zen"
+        },
+        {
+            "id": "24",
+            "text": "Do what you love.",
+            "action": "Spend 15 minutes on a hobby.",
+            "category": "zen"
+        },
+        {
+            "id": "25",
+            "text": "Stay close to what keeps you feeling alive.",
+            "action": "Go for a short walk in nature.",
+            "category": "zen"
+        },
+        {
+            "id": "26",
+            "text": "Dream big.",
+            "action": "Write down your biggest dream.",
+            "category": "zen"
+        },
+        {
+            "id": "27",
+            "text": "Be yourself; everyone else is already taken.",
+            "action": "Wear something that makes you feel good.",
+            "category": "zen"
+        },
+        {
+            "id": "28",
+            "text": "Create your own sunshine.",
+            "action": "Do a random act of kindness.",
+            "category": "zen"
+        },
+        {
+            "id": "29",
+            "text": "Difficult roads lead to beautiful destinations.",
+            "action": "Keep going, even if it's hard.",
+            "category": "zen"
+        },
+        {
+            "id": "30",
+            "text": "Good things take time.",
+            "action": "Be patient with yourself today.",
+            "category": "zen"
+        },
+        {
+            "id": "31",
+            "text": "Collect moments, not things.",
+            "action": "Take a photo of something beautiful.",
+            "category": "zen"
+        },
+        {
+            "id": "32",
+            "text": "Life is a journey, not a destination.",
+            "action": "Enjoy your commute or walk today.",
+            "category": "zen"
+        },
+        {
+            "id": "33",
+            "text": "Positive mind, positive vibes, positive life.",
+            "action": "Replace one negative thought with a positive one.",
+            "category": "zen"
+        },
+        {
+            "id": "34",
+            "text": "Make today amazing.",
+            "action": "Treat yourself to your favorite drink.",
+            "category": "zen"
+        },
+        {
+            "id": "35",
+            "text": "You are capable of amazing things.",
+            "action": "Tackle a task you think is difficult.",
+            "category": "zen"
+        },
+        {
+            "id": "36",
+            "text": "Don't wait for opportunity. Create it.",
+            "action": "Reach out to someone who inspires you.",
+            "category": "zen"
+        },
+        {
+            "id": "37",
+            "text": "Success is not final, failure is not fatal.",
+            "action": "Read a biography of a successful person.",
+            "category": "zen"
+        },
+        {
+            "id": "38",
+            "text": "Be the change you wish to see in the world.",
+            "action": "Pick up a piece of litter.",
+            "category": "zen"
+        },
+        {
+            "id": "39",
+            "text": "In the middle of every difficulty lies opportunity.",
+            "action": "Brainstorm solutions to a problem.",
+            "category": "zen"
+        },
+        {
+            "id": "40",
+            "text": "It always seems impossible until it's done.",
+            "action": "Start a project you've been delaying.",
+            "category": "zen"
+        },
+        {
+            "id": "41",
+            "text": "Turn your wounds into wisdom.",
+            "action": "Reflect on what you learned from a mistake.",
+            "category": "zen"
+        },
+        {
+            "id": "42",
+            "text": "Change the world by being yourself.",
+            "action": "Share your honest opinion on something.",
+            "category": "zen"
+        },
+        {
+            "id": "43",
+            "text": "Every moment is a fresh beginning.",
+            "action": "Reset your day if it started badly.",
+            "category": "zen"
+        },
+        {
+            "id": "44",
+            "text": "Never regret anything that made you smile.",
+            "action": "Look at old happy photos.",
+            "category": "zen"
+        },
+        {
+            "id": "45",
+            "text": "Die with memories, not dreams.",
+            "action": "Plan a small adventure for the weekend.",
+            "category": "zen"
+        },
+        {
+            "id": "46",
+            "text": "Aspire to inspire before we expire.",
+            "action": "Share a motivational quote on social media.",
+            "category": "zen"
+        },
+        {
+            "id": "47",
+            "text": "Everything you can imagine is real.",
+            "action": "Draw or doodle your idea.",
+            "category": "zen"
+        },
+        {
+            "id": "48",
+            "text": "Whatever you do, do it well.",
+            "action": "Put extra effort into your next task.",
+            "category": "zen"
+        },
+        {
+            "id": "49",
+            "text": "What we think, we become.",
+            "action": "Meditate on your ideal self.",
+            "category": "zen"
+        },
+        {
+            "id": "50",
+            "text": "All limitations are self-imposed.",
+            "action": "Challenge a belief that holds you back.",
+            "category": "zen"
+        },
+        {
+            "id": "51",
+            "text": "Tough times never last but tough people do.",
+            "action": "Remind yourself of your resilience.",
+            "category": "zen"
+        },
+        {
+            "id": "52",
+            "text": "Problems are not stop signs, they are guidelines.",
+            "action": "View a problem as a puzzle to solve.",
+            "category": "zen"
+        },
+        {
+            "id": "53",
+            "text": "One day or day one. You decide.",
+            "action": "Start a new habit today.",
+            "category": "zen"
+        },
+        {
+            "id": "54",
+            "text": "Hate comes from intimidation, love comes from appreciation.",
+            "action": "Appreciate someone you usually disagree with.",
+            "category": "zen"
+        },
+        {
+            "id": "55",
+            "text": "Determine your priorities and focus on them.",
+            "action": "Identify your top 3 priorities for the week.",
+            "category": "zen"
+        },
+        {
+            "id": "56",
+            "text": "Be so good they can't ignore you.",
+            "action": "Learn a new skill or tip related to your work.",
+            "category": "zen"
+        },
+        {
+            "id": "57",
+            "text": "Dream as if you'll live forever, live as if you'll die today.",
+            "action": "Do something spontaneous.",
+            "category": "zen"
+        },
+        {
+            "id": "58",
+            "text": "Yesterday you said tomorrow. Just do it.",
+            "action": "Complete a task in under 5 minutes.",
+            "category": "zen"
+        },
+        {
+            "id": "59",
+            "text": "I don't need it to be easy, I need it to be worth it.",
+            "action": "Commit to a challenging goal.",
+            "category": "zen"
+        },
+        {
+            "id": "60",
+            "text": "Never let your emotions overpower your intelligence.",
+            "action": "Pause before reacting to a situation.",
+            "category": "zen"
+        },
+        {
+            "id": "61",
+            "text": "Nothing lasts forever but at least we got these memories.",
+            "action": "Call an old friend to catch up.",
+            "category": "zen"
+        },
+        {
+            "id": "62",
+            "text": "Don't tell people your plans. Show them your results.",
+            "action": "Work silently on a goal today.",
+            "category": "zen"
+        },
+        {
+            "id": "63",
+            "text": "Try to be a rainbow in someone's cloud.",
+            "action": "Cheer up someone who is feeling down.",
+            "category": "zen"
+        },
+        {
+            "id": "64",
+            "text": "There is no substitute for hard work.",
+            "action": "Focus intensely for 30 minutes.",
+            "category": "zen"
+        },
+        {
+            "id": "65",
+            "text": "What consumes your mind controls your life.",
+            "action": "Read something inspiring.",
+            "category": "zen"
+        },
+        {
+            "id": "66",
+            "text": "Strive for progress, not perfection.",
+            "action": "Accept a 'good enough' result.",
+            "category": "zen"
+        },
+        {
+            "id": "67",
+            "text": "May your choices reflect your hopes, not your fears.",
+            "action": "Make a decision based on hope.",
+            "category": "zen"
+        },
+        {
+            "id": "68",
+            "text": "A happy soul is the best shield for a cruel world.",
+            "action": "Watch a funny video.",
+            "category": "zen"
+        },
+        {
+            "id": "69",
+            "text": "White is not always light and black is not always dark.",
+            "action": "Look at a situation from a different perspective.",
+            "category": "zen"
+        },
+        {
+            "id": "70",
+            "text": "Life is short, make it sweet.",
+            "action": "Eat your favorite dessert.",
+            "category": "zen"
+        }
+    ],
+    "Русский": [
+        {
+            "id": "1",
+            "text": "Твоя энергия — твой самый ценный ресурс.",
+            "action": "Отдохни 10 минут без телефона.",
+            "category": "zen"
+        },
+        {
+            "id": "2",
+            "text": "Маленькие шаги ведут к большим переменам.",
+            "action": "Сделай одно маленькое дело, которое откладывал.",
+            "category": "zen"
+        },
+        {
+            "id": "3",
+            "text": "Улыбнись незнакомцу.",
+            "action": null,
+            "category": "zen"
+        },
+        {
+            "id": "4",
+            "text": "Тишина — это тоже ответ.",
+            "action": "Послушай тишину.",
+            "category": "zen"
+        },
+        {
+            "id": "5",
+            "text": "Ты достаточен таким, какой ты есть.",
+            "action": "Посмотри в зеркало и скажи: 'Я достаточен'.",
+            "category": "zen"
+        },
+        {
+            "id": "6",
+            "text": "Вдохни глубоко, выдохни медленно.",
+            "action": "Сделай 5 глубоких вдохов прямо сейчас.",
+            "category": "zen"
+        },
+        {
+            "id": "7",
+            "text": "Сегодня — это новое начало.",
+            "action": "Запиши одну цель на сегодня.",
+            "category": "zen"
+        },
+        {
+            "id": "8",
+            "text": "Доброта ничего не стоит.",
+            "action": "Сделай искренний комплимент кому-нибудь.",
+            "category": "zen"
+        },
+        {
+            "id": "9",
+            "text": "Сосредоточься на настоящем моменте.",
+            "action": "Рассмотри 3 вещи вокруг себя в деталях.",
+            "category": "zen"
+        },
+        {
+            "id": "10",
+            "text": "Благодарность меняет всё.",
+            "action": "Перечисли 3 вещи, за которые ты благодарен.",
+            "category": "zen"
+        },
+        {
+            "id": "11",
+            "text": "Твой потенциал безграничен.",
+            "action": "Визуализируй свою мечту в течение 1 минуты.",
+            "category": "zen"
+        },
+        {
+            "id": "12",
+            "text": "Счастье — это выбор.",
+            "action": "Сделай что-то, что заставит тебя улыбнуться.",
+            "category": "zen"
+        },
+        {
+            "id": "13",
+            "text": "Не бойся ошибаться.",
+            "action": "Попробуй что-то новое сегодня.",
+            "category": "zen"
+        },
+        {
+            "id": "14",
+            "text": "Доверься процессу.",
+            "action": "Отпусти одно беспокойство, которое ты не можешь контролировать.",
+            "category": "zen"
+        },
+        {
+            "id": "15",
+            "text": "Ты сильнее, чем думаешь.",
+            "action": "Вспомни время, когда ты преодолел трудность.",
+            "category": "zen"
+        },
+        {
+            "id": "16",
+            "text": "Стань причиной чьей-то улыбки сегодня.",
+            "action": "Отправь доброе сообщение другу.",
+            "category": "zen"
+        },
+        {
+            "id": "17",
+            "text": "Мир начинается с улыбки.",
+            "action": "Улыбнись себе в зеркале.",
+            "category": "zen"
+        },
+        {
+            "id": "18",
+            "text": "Каждый день — это второй шанс.",
+            "action": "Прости себя за прошлую ошибку.",
+            "category": "zen"
+        },
+        {
+            "id": "19",
+            "text": "Слушай больше, чем говоришь.",
+            "action": "Спроси кого-нибудь, как у него дела, и действительно выслушай.",
+            "category": "zen"
+        },
+        {
+            "id": "20",
+            "text": "Простота — это высшая утонченность.",
+            "action": "Разбери одну небольшую зону в своем пространстве.",
+            "category": "zen"
+        },
+        {
+            "id": "21",
+            "text": "Верь, что можешь, и ты уже на полпути.",
+            "action": "Напиши 'Я могу это сделать' на стикере.",
+            "category": "zen"
+        },
+        {
+            "id": "22",
+            "text": "Лучший вид открывается после самого трудного подъема.",
+            "action": "Поднимись по лестнице вместо лифта.",
+            "category": "zen"
+        },
+        {
+            "id": "23",
+            "text": "Звезды не могут сиять без темноты.",
+            "action": "Найди урок в недавней трудности.",
+            "category": "zen"
+        },
+        {
+            "id": "24",
+            "text": "Делай то, что любишь.",
+            "action": "Удели 15 минут хобби.",
+            "category": "zen"
+        },
+        {
+            "id": "25",
+            "text": "Держись ближе к тому, что заставляет тебя чувствовать себя живым.",
+            "action": "Прогуляйся на природе.",
+            "category": "zen"
+        },
+        {
+            "id": "26",
+            "text": "Мечтай по-крупному.",
+            "action": "Запиши свою самую большую мечту.",
+            "category": "zen"
+        },
+        {
+            "id": "27",
+            "text": "Будь собой; все остальные места уже заняты.",
+            "action": "Надень то, в чем чувствуешь себя хорошо.",
+            "category": "zen"
+        },
+        {
+            "id": "28",
+            "text": "Создавай свое собственное солнце.",
+            "action": "Сделай случайный акт доброты.",
+            "category": "zen"
+        },
+        {
+            "id": "29",
+            "text": "Трудные дороги ведут к прекрасным местам.",
+            "action": "Продолжай идти, даже если трудно.",
+            "category": "zen"
+        },
+        {
+            "id": "30",
+            "text": "Хорошие вещи требуют времени.",
+            "action": "Будь терпелив к себе сегодня.",
+            "category": "zen"
+        },
+        {
+            "id": "31",
+            "text": "Коллекционируй моменты, а не вещи.",
+            "action": "Сделай фото чего-то красивого.",
+            "category": "zen"
+        },
+        {
+            "id": "32",
+            "text": "Жизнь — это путешествие, а не пункт назначения.",
+            "action": "Насладись дорогой на работу или прогулкой.",
+            "category": "zen"
+        },
+        {
+            "id": "33",
+            "text": "Позитивный ум, позитивные вибрации, позитивная жизнь.",
+            "action": "Замени одну негативную мысль на позитивную.",
+            "category": "zen"
+        },
+        {
+            "id": "34",
+            "text": "Сделай сегодня потрясающим.",
+            "action": "Угости себя любимым напитком.",
+            "category": "zen"
+        },
+        {
+            "id": "35",
+            "text": "Ты способен на удивительные вещи.",
+            "action": "Возьмись за задачу, которую считаешь сложной.",
+            "category": "zen"
+        },
+        {
+            "id": "36",
+            "text": "Не жди возможности. Создавай её.",
+            "action": "Свяжись с кем-то, кто тебя вдохновляет.",
+            "category": "zen"
+        },
+        {
+            "id": "37",
+            "text": "Успех не окончателен, неудача не фатальна.",
+            "action": "Прочитай биографию успешного человека.",
+            "category": "zen"
+        },
+        {
+            "id": "38",
+            "text": "Будь тем изменением, которое хочешь видеть в мире.",
+            "action": "Подними мусор на улице.",
+            "category": "zen"
+        },
+        {
+            "id": "39",
+            "text": "В середине каждой трудности скрывается возможность.",
+            "action": "Придумай решения проблемы.",
+            "category": "zen"
+        },
+        {
+            "id": "40",
+            "text": "Это всегда кажется невозможным, пока не сделано.",
+            "action": "Начни проект, который откладывал.",
+            "category": "zen"
+        },
+        {
+            "id": "41",
+            "text": "Преврати свои раны в мудрость.",
+            "action": "Подумай, чему ты научился на ошибке.",
+            "category": "zen"
+        },
+        {
+            "id": "42",
+            "text": "Измени мир, будучи собой.",
+            "action": "Поделись своим честным мнением о чем-то.",
+            "category": "zen"
+        },
+        {
+            "id": "43",
+            "text": "Каждый момент — это новое начало.",
+            "action": "Перезагрузи свой день, если он начался плохо.",
+            "category": "zen"
+        },
+        {
+            "id": "44",
+            "text": "Никогда не жалей о том, что заставило тебя улыбнуться.",
+            "action": "Посмотри старые счастливые фото.",
+            "category": "zen"
+        },
+        {
+            "id": "45",
+            "text": "Умирай с воспоминаниями, а не с мечтами.",
+            "action": "Запланируй небольшое приключение на выходные.",
+            "category": "zen"
+        },
+        {
+            "id": "46",
+            "text": "Стремись вдохновлять.",
+            "action": "Поделись мотивационной цитатой в соцсетях.",
+            "category": "zen"
+        },
+        {
+            "id": "47",
+            "text": "Всё, что ты можешь представить, реально.",
+            "action": "Нарисуй свою идею.",
+            "category": "zen"
+        },
+        {
+            "id": "48",
+            "text": "Что бы ты ни делал, делай это хорошо.",
+            "action": "Приложи дополнительные усилия к следующей задаче.",
+            "category": "zen"
+        },
+        {
+            "id": "49",
+            "text": "Мы становимся тем, о чем думаем.",
+            "action": "Помедитируй на свой идеальный образ.",
+            "category": "zen"
+        },
+        {
+            "id": "50",
+            "text": "Все ограничения навязаны нами самими.",
+            "action": "Брось вызов убеждению, которое тебя сдерживает.",
+            "category": "zen"
+        },
+        {
+            "id": "51",
+            "text": "Трудные времена не длятся вечно, а сильные люди — да.",
+            "action": "Напомни себе о своей стойкости.",
+            "category": "zen"
+        },
+        {
+            "id": "52",
+            "text": "Проблемы — это не знаки 'стоп', это указатели.",
+            "action": "Рассматривай проблему как головоломку.",
+            "category": "zen"
+        },
+        {
+            "id": "53",
+            "text": "Один день или день номер один. Решай сам.",
+            "action": "Начни новую привычку сегодня.",
+            "category": "zen"
+        },
+        {
+            "id": "54",
+            "text": "Ненависть исходит от страха, любовь — от признательности.",
+            "action": "Оцени кого-то, с кем обычно не соглашаешься.",
+            "category": "zen"
+        },
+        {
+            "id": "55",
+            "text": "Определи свои приоритеты и сосредоточься на них.",
+            "action": "Выдели топ-3 приоритета на неделю.",
+            "category": "zen"
+        },
+        {
+            "id": "56",
+            "text": "Будь настолько хорош, чтобы тебя не могли игнорировать.",
+            "action": "Изучи новый навык или совет по работе.",
+            "category": "zen"
+        },
+        {
+            "id": "57",
+            "text": "Мечтай так, как будто будешь жить вечно, живи так, как будто умрешь сегодня.",
+            "action": "Сделай что-то спонтанное.",
+            "category": "zen"
+        },
+        {
+            "id": "58",
+            "text": "Вчера ты говорил 'завтра'. Просто сделай это.",
+            "action": "Выполни задачу менее чем за 5 минут.",
+            "category": "zen"
+        },
+        {
+            "id": "59",
+            "text": "Мне не нужно, чтобы было легко, мне нужно, чтобы это того стоило.",
+            "action": "Возьми на себя сложную цель.",
+            "category": "zen"
+        },
+        {
+            "id": "60",
+            "text": "Никогда не позволяй эмоциям пересилить твой интеллект.",
+            "action": "Сделай паузу перед реакцией на ситуацию.",
+            "category": "zen"
+        },
+        {
+            "id": "61",
+            "text": "Ничто не вечно, но по крайней мере у нас есть эти воспоминания.",
+            "action": "Позвони старому другу, чтобы поболтать.",
+            "category": "zen"
+        },
+        {
+            "id": "62",
+            "text": "Не рассказывай людям о своих планах. Покажи им результаты.",
+            "action": "Работай молча над целью сегодня.",
+            "category": "zen"
+        },
+        {
+            "id": "63",
+            "text": "Постарайся быть радугой в чьем-то облаке.",
+            "action": "Подбодри того, кто грустит.",
+            "category": "zen"
+        },
+        {
+            "id": "64",
+            "text": "Нет замены упорному труду.",
+            "action": "Сосредоточься интенсивно на 30 минут.",
+            "category": "zen"
+        },
+        {
+            "id": "65",
+            "text": "То, что занимает твой ум, управляет твоей жизнью.",
+            "action": "Прочитай что-то вдохновляющее.",
+            "category": "zen"
+        },
+        {
+            "id": "66",
+            "text": "Стремись к прогрессу, а не к совершенству.",
+            "action": "Прими результат 'достаточно хорошо'.",
+            "category": "zen"
+        },
+        {
+            "id": "67",
+            "text": "Пусть твой выбор отражает твои надежды, а не страхи.",
+            "action": "Прими решение, основанное на надежде.",
+            "category": "zen"
+        },
+        {
+            "id": "68",
+            "text": "Счастливая душа — лучший щит в жестоком мире.",
+            "action": "Посмотри смешное видео.",
+            "category": "zen"
+        },
+        {
+            "id": "69",
+            "text": "Белое не всегда светлое, а черное не всегда темное.",
+            "action": "Посмотри на ситуацию с другой точки зрения.",
+            "category": "zen"
+        },
+        {
+            "id": "70",
+            "text": "Жизнь коротка, сделай её сладкой.",
+            "action": "Съешь свой любимый десерт.",
+            "category": "zen"
+        }
+    ],
+    "Español": [
+        {
+            "id": "1",
+            "text": "Tu energía es tu recurso más valioso.",
+            "action": "Descansa 10 minutos sin tu teléfono.",
+            "category": "zen"
+        },
+        {
+            "id": "2",
+            "text": "Pequeños pasos conducen a grandes cambios.",
+            "action": "Haz una pequeña tarea que has estado posponiendo.",
+            "category": "zen"
+        },
+        {
+            "id": "3",
+            "text": "Sonríe a un desconocido.",
+            "action": null,
+            "category": "zen"
+        },
+        {
+            "id": "4",
+            "text": "El silencio también es una respuesta.",
+            "action": "Escucha el silencio.",
+            "category": "zen"
+        },
+        {
+            "id": "5",
+            "text": "Eres suficiente tal como eres.",
+            "action": "Mírate al espejo y di 'Soy suficiente'.",
+            "category": "zen"
+        },
+        {
+            "id": "6",
+            "text": "Inhala profundamente, exhala lentamente.",
+            "action": "Toma 5 respiraciones profundas ahora mismo.",
+            "category": "zen"
+        },
+        {
+            "id": "7",
+            "text": "Hoy es un nuevo comienzo.",
+            "action": "Escribe una meta para hoy.",
+            "category": "zen"
+        },
+        {
+            "id": "8",
+            "text": "La amabilidad no cuesta nada.",
+            "action": "Haz un cumplido genuino a alguien.",
+            "category": "zen"
+        },
+        {
+            "id": "9",
+            "text": "Concéntrate en el momento presente.",
+            "action": "Observa 3 cosas a tu alrededor en detalle.",
+            "category": "zen"
+        },
+        {
+            "id": "10",
+            "text": "La gratitud lo cambia todo.",
+            "action": "Enumera 3 cosas por las que estás agradecido.",
+            "category": "zen"
+        },
+        {
+            "id": "11",
+            "text": "Tu potencial es ilimitado.",
+            "action": "Visualiza tu vida soñada durante 1 minuto.",
+            "category": "zen"
+        },
+        {
+            "id": "12",
+            "text": "La felicidad es una elección.",
+            "action": "Haz algo que te haga sonreír.",
+            "category": "zen"
+        },
+        {
+            "id": "13",
+            "text": "No tengas miedo de fallar.",
+            "action": "Prueba algo nuevo hoy.",
+            "category": "zen"
+        },
+        {
+            "id": "14",
+            "text": "Confía en el proceso.",
+            "action": "Suelta una preocupación que no puedes controlar.",
+            "category": "zen"
+        },
+        {
+            "id": "15",
+            "text": "Eres más fuerte de lo que piensas.",
+            "action": "Recuerda un momento en que superaste un desafío.",
+            "category": "zen"
+        },
+        {
+            "id": "16",
+            "text": "Sé la razón por la que alguien sonríe hoy.",
+            "action": "Envía un mensaje amable a un amigo.",
+            "category": "zen"
+        },
+        {
+            "id": "17",
+            "text": "La paz comienza con una sonrisa.",
+            "action": "Sonríete a ti mismo en el espejo.",
+            "category": "zen"
+        },
+        {
+            "id": "18",
+            "text": "Cada día es una segunda oportunidad.",
+            "action": "Perdónate por un error pasado.",
+            "category": "zen"
+        },
+        {
+            "id": "19",
+            "text": "Escucha más de lo que hablas.",
+            "action": "Pregúntale a alguien cómo está y escucha realmente.",
+            "category": "zen"
+        },
+        {
+            "id": "20",
+            "text": "La simplicidad es la máxima sofisticación.",
+            "action": "Ordena una pequeña área de tu espacio.",
+            "category": "zen"
+        },
+        {
+            "id": "21",
+            "text": "Cree que puedes y ya estás a medio camino.",
+            "action": "Escribe 'Puedo hacerlo' en una nota adhesiva.",
+            "category": "zen"
+        },
+        {
+            "id": "22",
+            "text": "La mejor vista viene después de la subida más difícil.",
+            "action": "Usa las escaleras en lugar del ascensor.",
+            "category": "zen"
+        },
+        {
+            "id": "23",
+            "text": "Las estrellas no pueden brillar sin oscuridad.",
+            "action": "Encuentra una lección en una dificultad reciente.",
+            "category": "zen"
+        },
+        {
+            "id": "24",
+            "text": "Haz lo que amas.",
+            "action": "Dedica 15 minutos a un pasatiempo.",
+            "category": "zen"
+        },
+        {
+            "id": "25",
+            "text": "Mantente cerca de lo que te hace sentir vivo.",
+            "action": "Da un paseo corto en la naturaleza.",
+            "category": "zen"
+        },
+        {
+            "id": "26",
+            "text": "Sueña en grande.",
+            "action": "Escribe tu sueño más grande.",
+            "category": "zen"
+        },
+        {
+            "id": "27",
+            "text": "Sé tú mismo; todos los demás ya están ocupados.",
+            "action": "Usa algo que te haga sentir bien.",
+            "category": "zen"
+        },
+        {
+            "id": "28",
+            "text": "Crea tu propio sol.",
+            "action": "Haz un acto de bondad al azar.",
+            "category": "zen"
+        },
+        {
+            "id": "29",
+            "text": "Los caminos difíciles conducen a destinos hermosos.",
+            "action": "Sigue adelante, incluso si es difícil.",
+            "category": "zen"
+        },
+        {
+            "id": "30",
+            "text": "Las cosas buenas toman tiempo.",
+            "action": "Sé paciente contigo mismo hoy.",
+            "category": "zen"
+        },
+        {
+            "id": "31",
+            "text": "Colecciona momentos, no cosas.",
+            "action": "Toma una foto de algo hermoso.",
+            "category": "zen"
+        },
+        {
+            "id": "32",
+            "text": "La vida es un viaje, no un destino.",
+            "action": "Disfruta de tu viaje o paseo hoy.",
+            "category": "zen"
+        },
+        {
+            "id": "33",
+            "text": "Mente positiva, vibras positivas, vida positiva.",
+            "action": "Reemplaza un pensamiento negativo por uno positivo.",
+            "category": "zen"
+        },
+        {
+            "id": "34",
+            "text": "Haz que hoy sea increíble.",
+            "action": "Date un capricho con tu bebida favorita.",
+            "category": "zen"
+        },
+        {
+            "id": "35",
+            "text": "Eres capaz de cosas asombrosas.",
+            "action": "Aborda una tarea que creas difícil.",
+            "category": "zen"
+        },
+        {
+            "id": "36",
+            "text": "No esperes la oportunidad. Créala.",
+            "action": "Contacta a alguien que te inspire.",
+            "category": "zen"
+        },
+        {
+            "id": "37",
+            "text": "El éxito no es definitivo, el fracaso no es fatal.",
+            "action": "Lee una biografía de una persona exitosa.",
+            "category": "zen"
+        },
+        {
+            "id": "38",
+            "text": "Sé el cambio que deseas ver en el mundo.",
+            "action": "Recoge un trozo de basura.",
+            "category": "zen"
+        },
+        {
+            "id": "39",
+            "text": "En medio de cada dificultad yace la oportunidad.",
+            "action": "Piensa en soluciones a un problema.",
+            "category": "zen"
+        },
+        {
+            "id": "40",
+            "text": "Siempre parece imposible hasta que se hace.",
+            "action": "Empieza un proyecto que has estado retrasando.",
+            "category": "zen"
+        },
+        {
+            "id": "41",
+            "text": "Convierte tus heridas en sabiduría.",
+            "action": "Reflexiona sobre lo que aprendiste de un error.",
+            "category": "zen"
+        },
+        {
+            "id": "42",
+            "text": "Cambia el mundo siendo tú mismo.",
+            "action": "Comparte tu opinión honesta sobre algo.",
+            "category": "zen"
+        },
+        {
+            "id": "43",
+            "text": "Cada momento es un nuevo comienzo.",
+            "action": "Reinicia tu día si empezó mal.",
+            "category": "zen"
+        },
+        {
+            "id": "44",
+            "text": "Nunca te arrepientas de nada que te hizo sonreír.",
+            "action": "Mira fotos antiguas felices.",
+            "category": "zen"
+        },
+        {
+            "id": "45",
+            "text": "Muere con recuerdos, no con sueños.",
+            "action": "Planea una pequeña aventura para el fin de semana.",
+            "category": "zen"
+        },
+        {
+            "id": "46",
+            "text": "Aspira a inspirar antes de expirar.",
+            "action": "Comparte una cita motivadora en redes sociales.",
+            "category": "zen"
+        },
+        {
+            "id": "47",
+            "text": "Todo lo que puedes imaginar es real.",
+            "action": "Dibuja o garabatea tu idea.",
+            "category": "zen"
+        },
+        {
+            "id": "48",
+            "text": "Hagas lo que hagas, hazlo bien.",
+            "action": "Pon un esfuerzo extra en tu próxima tarea.",
+            "category": "zen"
+        },
+        {
+            "id": "49",
+            "text": "Nos convertimos en lo que pensamos.",
+            "action": "Medita sobre tu yo ideal.",
+            "category": "zen"
+        },
+        {
+            "id": "50",
+            "text": "Todas las limitaciones son autoimpuestas.",
+            "action": "Desafía una creencia que te retiene.",
+            "category": "zen"
+        },
+        {
+            "id": "51",
+            "text": "Los tiempos difíciles nunca duran, pero las personas fuertes sí.",
+            "action": "Recuérdate tu resiliencia.",
+            "category": "zen"
+        },
+        {
+            "id": "52",
+            "text": "Los problemas no son señales de alto, son pautas.",
+            "action": "Ve un problema como un rompecabezas a resolver.",
+            "category": "zen"
+        },
+        {
+            "id": "53",
+            "text": "Un día o día uno. Tú decides.",
+            "action": "Empieza un nuevo hábito hoy.",
+            "category": "zen"
+        },
+        {
+            "id": "54",
+            "text": "El odio viene de la intimidación, el amor viene de la apreciación.",
+            "action": "Aprecia a alguien con quien usualmente no estás de acuerdo.",
+            "category": "zen"
+        },
+        {
+            "id": "55",
+            "text": "Determina tus prioridades y concéntrate en ellas.",
+            "action": "Identifica tus 3 prioridades principales para la semana.",
+            "category": "zen"
+        },
+        {
+            "id": "56",
+            "text": "Sé tan bueno que no puedan ignorarte.",
+            "action": "Aprende una nueva habilidad o consejo relacionado con tu trabajo.",
+            "category": "zen"
+        },
+        {
+            "id": "57",
+            "text": "Sueña como si fueras a vivir para siempre, vive como si fueras a morir hoy.",
+            "action": "Haz algo espontáneo.",
+            "category": "zen"
+        },
+        {
+            "id": "58",
+            "text": "Ayer dijiste mañana. Solo hazlo.",
+            "action": "Completa una tarea en menos de 5 minutos.",
+            "category": "zen"
+        },
+        {
+            "id": "59",
+            "text": "No necesito que sea fácil, necesito que valga la pena.",
+            "action": "Comprométete con una meta desafiante.",
+            "category": "zen"
+        },
+        {
+            "id": "60",
+            "text": "Nunca dejes que tus emociones dominen tu inteligencia.",
+            "action": "Haz una pausa antes de reaccionar a una situación.",
+            "category": "zen"
+        },
+        {
+            "id": "61",
+            "text": "Nada dura para siempre, pero al menos tenemos estos recuerdos.",
+            "action": "Llama a un viejo amigo para ponerte al día.",
+            "category": "zen"
+        },
+        {
+            "id": "62",
+            "text": "No le cuentes a la gente tus planes. Muéstrales tus resultados.",
+            "action": "Trabaja en silencio en una meta hoy.",
+            "category": "zen"
+        },
+        {
+            "id": "63",
+            "text": "Trata de ser un arcoíris en la nube de alguien.",
+            "action": "Anima a alguien que se sienta triste.",
+            "category": "zen"
+        },
+        {
+            "id": "64",
+            "text": "No hay sustituto para el trabajo duro.",
+            "action": "Concéntrate intensamente durante 30 minutos.",
+            "category": "zen"
+        },
+        {
+            "id": "65",
+            "text": "Lo que consume tu mente controla tu vida.",
+            "action": "Lee algo inspirador.",
+            "category": "zen"
+        },
+        {
+            "id": "66",
+            "text": "Lucha por el progreso, no por la perfección.",
+            "action": "Acepta un resultado 'suficientemente bueno'.",
+            "category": "zen"
+        },
+        {
+            "id": "67",
+            "text": "Que tus elecciones reflejen tus esperanzas, no tus miedos.",
+            "action": "Toma una decisión basada en la esperanza.",
+            "category": "zen"
+        },
+        {
+            "id": "68",
+            "text": "Un alma feliz es el mejor escudo para un mundo cruel.",
+            "action": "Mira un video divertido.",
+            "category": "zen"
+        },
+        {
+            "id": "69",
+            "text": "El blanco no siempre es luz y el negro no siempre es oscuridad.",
+            "action": "Mira una situación desde una perspectiva diferente.",
+            "category": "zen"
+        },
+        {
+            "id": "70",
+            "text": "La vida es corta, hazla dulce.",
+            "action": "Come tu postre favorito.",
+            "category": "zen"
+        }
+    ]
+}

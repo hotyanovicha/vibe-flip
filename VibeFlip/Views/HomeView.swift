@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var showSettings: Bool
-    @Binding var showCalendar: Bool
+
     
     @State private var isCardOpen = false
     @State private var card: MotivationCard?
@@ -38,47 +38,40 @@ struct HomeView: View {
                 Button(action: {
                     openCard()
                 }) {
-                    HStack {
+                    HStack(spacing: 8) {
                         Image(systemName: "sparkles")
-                        Text("Что там сегодня?")
-                            .fontWeight(.medium)
+                        Text(LocalizedStrings.getText("give_me_vibe", language: selectedLanguage))
+                            .fontWeight(.semibold)
                     }
-                    .foregroundColor(.white)
+                    .font(.title3)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.purple, .pink],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                     .padding(.vertical, 16)
                     .padding(.horizontal, 32)
-                    .background(Color.black)
-                    .cornerRadius(30)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                    .background(Color.white)
+                    .clipShape(Capsule())
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 }
             }
             
             Spacer()
             
             // Footer
-            HStack {
-                Button(action: {
-                    HapticManager.shared.impact(style: .light)
-                    showCalendar = true
-                }) {
-                    Image(systemName: "calendar")
-                        .font(.system(size: 20))
-                        .foregroundColor(.black)
-                        .padding()
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
-                }
-                Spacer()
-            }
-            .padding(.horizontal)
-            .padding(.bottom, 20)
+            Spacer()
+                .frame(height: 20)
         }
-        .onAppear {
-            checkIfAlreadyOpened()
+        .onChange(of: selectedLanguage) {
+            isCardOpen = false
+            card = nil
         }
     }
     
-    @AppStorage("selectedLanguage") private var selectedLanguage = "Русский"
+    @AppStorage("selectedLanguage") private var selectedLanguage = "English"
 
     private func openCard() {
         HapticManager.shared.impact(style: .medium)
@@ -89,7 +82,7 @@ struct HomeView: View {
             isCardOpen = true
         }
         
-        HistoryManager.shared.markAsOpened(date: today)
+
     }
     
     private func checkIfAlreadyOpened() {

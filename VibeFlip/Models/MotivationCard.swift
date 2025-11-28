@@ -8,6 +8,6 @@ struct MotivationCard: Identifiable, Codable {
     
     enum CardCategory: String, Codable {
         case zen
-        case bold
+
     }
 }
