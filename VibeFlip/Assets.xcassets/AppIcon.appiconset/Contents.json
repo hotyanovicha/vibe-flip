@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "unnamed.jpg",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,6 +24,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "ChatGPT Image Nov 28, 2025, 06_47_07 PM.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
