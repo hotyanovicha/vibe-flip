@@ -9,132 +9,205 @@ struct CardView: View {
     
     // State for animations
     @State private var offset = CGSize.zero
+    @State private var isPressed = false
+    @State private var showSparkles = false
+    @State private var dragScale: CGFloat = 1.0
     
     var body: some View {
         // Main Card Content
         VStack(spacing: 20) {
-                // Icon
-                HStack {
-                    Spacer()
-                    Image(systemName: "sparkles")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(textColor.opacity(0.6))
-                }
-                
+            // Icon with SF Symbol Effect
+            HStack {
                 Spacer()
-                
-                // Motivation Text
-                Text(card.text)
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(textColor)
-                    .padding(.horizontal, 10)
-                    // Subtle glow in dark mode for readability
-                    .shadow(color: colorScheme == .dark ? .white.opacity(0.1) : .clear, radius: 5)
-                
-                // Challenge Section
-                if let action = card.action {
-                    VStack(spacing: 12) {
-                        Text(LocalizedStrings.getText("challenge", language: selectedLanguage).uppercased())
-                            .font(.system(size: 11, weight: .heavy))
-                            .tracking(2.5)
-                            .foregroundColor(textColor.opacity(0.5))
-                        
-                        Text(action)
-                            .font(.callout)
-                            .fontWeight(.medium)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(textColor.opacity(0.8))
-                    }
-                    .padding(.top, 16)
-                    .padding(.horizontal)
-                }
-                
-                Spacer()
+                Image(systemName: "sparkles")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.purple, .pink],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .symbolEffect(.wiggle, options: .repeating, value: showSparkles)
             }
-            .padding(40)
-            .background(backgroundView)
-            .contentShape(Rectangle()) // Makes entire card area touchable
-            .clipShape(RoundedRectangle(cornerRadius: 32))
-            // Glass shadow
-            .shadow(
-                color: shadowColor,
-                radius: 25,
-                x: 0,
-                y: 12
-            )
-            // 3D rotation effect
-            .rotation3DEffect(
-                .degrees(Double(offset.width / 15)),
-                axis: (x: 0, y: 1, z: 0),
-                perspective: 0.8
-            )
-            .rotation3DEffect(
-                .degrees(Double(-offset.height / 15)),
-                axis: (x: 1, y: 0, z: 0),
-                perspective: 0.8
-            )
-            .gesture(dragGesture)
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(card.action != nil ? "\(card.text). \(LocalizedStrings.getText("challenge", language: selectedLanguage)): \(card.action!)" : card.text)
-            .padding(20)
+            
+            Spacer()
+            
+            // Motivation Text
+            Text(card.text)
+                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .multilineTextAlignment(.center)
+                .foregroundColor(textColor)
+                .padding(.horizontal, 10)
+                .shadow(color: colorScheme == .dark ? .white.opacity(0.1) : .clear, radius: 5)
+            
+            // Challenge Section
+            if let action = card.action {
+                VStack(spacing: 12) {
+                    Text(LocalizedStrings.getText("challenge", language: selectedLanguage).uppercased())
+                        .font(.system(size: 11, weight: .heavy))
+                        .tracking(2.5)
+                        .foregroundColor(textColor.opacity(0.5))
+                    
+                    Text(action)
+                        .font(.callout)
+                        .fontWeight(.medium)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(textColor.opacity(0.8))
+                }
+                .padding(.top, 16)
+                .padding(.horizontal)
+            }
+            
+            Spacer()
+        }
+        .padding(40)
+        .background(backgroundView)
+        .contentShape(Rectangle())
+        .clipShape(RoundedRectangle(cornerRadius: 32))
+        // Glass shadow
+        .shadow(
+            color: shadowColor,
+            radius: isPressed ? 15 : 25,
+            x: 0,
+            y: isPressed ? 6 : 12
+        )
+        // 2D offset instead of 3D rotation (fixes material transparency bug)
+        .offset(x: offset.width * 0.3, y: offset.height * 0.3)
+        // Soft tilt effect (2D rotation)
+        .rotationEffect(.degrees(Double(offset.width / 25)))
+        // Scale effects: drag scale + press scale
+        .scaleEffect(isPressed ? 0.95 : dragScale)
+        // Press state dimming
+        .brightness(isPressed ? -0.02 : 0)
+        .gesture(dragGesture)
+        .simultaneousGesture(pressGesture)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(card.action != nil ? "\(card.text). \(LocalizedStrings.getText("challenge", language: selectedLanguage)): \(card.action!)" : card.text)
+        .padding(20)
+        .onAppear {
+            // Trigger sparkle animation on appear
+            HapticManager.shared.notification(type: .success)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                showSparkles = true
+            }
+        }
     }
     
     // MARK: - Subviews & Computed Properties
     
-    // Glass card background (solid color - no touch color change)
+    // Apple Materials style glass background
+    @ViewBuilder
     var backgroundView: some View {
-        RoundedRectangle(cornerRadius: 32)
-            .fill(
-                colorScheme == .dark
-                    ? Color(red: 0.12, green: 0.12, blue: 0.14)
-                    : Color(red: 0.96, green: 0.96, blue: 0.98)
-            )
-            .overlay(
-                // Glass edge highlight
-                RoundedRectangle(cornerRadius: 32)
-                    .stroke(
-                        LinearGradient(
-                            colors: [
-                                Color.white.opacity(colorScheme == .dark ? 0.2 : 0.5),
-                                Color.white.opacity(0.02)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 1
-                    )
-            )
-    }
-    
-    // Adaptive text color based on background
-    var textColor: Color {
         switch style {
         case .classic:
-            return .primary // Automatically black in light, white in dark
+            // Use SwiftUI Material for true frosted glass effect
+            RoundedRectangle(cornerRadius: 32)
+                .fill(.thickMaterial)
+                .overlay(
+                    // Glass edge highlight
+                    RoundedRectangle(cornerRadius: 32)
+                        .stroke(
+                            LinearGradient(
+                                colors: [
+                                    Color.white.opacity(0.5),
+                                    Color.white.opacity(0.1),
+                                    Color.white.opacity(0.05)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 0.8
+                        )
+                )
         case .gradient:
-            return .white // White text on colorful background
+            // Vibrant gradient style with material overlay
+            RoundedRectangle(cornerRadius: 32)
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 32)
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color.purple.opacity(0.15),
+                                    Color.pink.opacity(0.1),
+                                    Color.orange.opacity(0.08)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                )
+                .overlay(
+                    // Glass edge highlight
+                    RoundedRectangle(cornerRadius: 32)
+                        .stroke(
+                            LinearGradient(
+                                colors: [
+                                    Color.white.opacity(0.4),
+                                    Color.white.opacity(0.1),
+                                    Color.clear
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 0.8
+                        )
+                )
         }
     }
     
-    // Adaptive shadow color
-    var shadowColor: Color {
-        return Color.black.opacity(colorScheme == .dark ? 0.4 : 0.2)
+    // Adaptive text color - works with vibrancy in materials
+    var textColor: Color {
+        .primary // Automatically adapts to material background
     }
     
-    // Drag gesture for 3D effect
+    // Adaptive shadow for depth
+    var shadowColor: Color {
+        Color.black.opacity(colorScheme == .dark ? 0.5 : 0.25)
+    }
+    
+    // MARK: - Gestures
+    
+    // Drag gesture for 2D wiggle effect
     var dragGesture: some Gesture {
         DragGesture()
             .onChanged { gesture in
-                withAnimation(.interactiveSpring()) {
+                withAnimation(.interactiveSpring(response: 0.3, dampingFraction: 0.6)) {
                     offset = gesture.translation
+                    // Subtle scale down when dragging far
+                    let distance = sqrt(pow(gesture.translation.width, 2) + pow(gesture.translation.height, 2))
+                    dragScale = max(0.95, 1 - distance / 1000)
+                }
+            }
+            .onEnded { _ in
+                // Jelly bounce back
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.5, blendDuration: 0)) {
+                    offset = .zero
+                    dragScale = 1.0
                 }
                 HapticManager.shared.impact(style: .soft)
             }
-            .onEnded { _ in
-                withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
-                    offset = .zero
+    }
+    
+    // Press gesture for jelly effect
+    var pressGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                if !isPressed {
+                    withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) {
+                        isPressed = true
+                    }
+                    HapticManager.shared.impact(style: .light)
                 }
+            }
+            .onEnded { _ in
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                    isPressed = false
+                }
+                // Toggle sparkle animation on tap
+                showSparkles.toggle()
+                HapticManager.shared.impact(style: .light)
             }
     }
 }

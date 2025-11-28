@@ -21,13 +21,24 @@ struct HomeView: View {
                     HapticManager.shared.impact(style: .light)
                     showSettings = true
                 }) {
-                    Image(systemName: "gearshape")
+                    Image(systemName: "gearshape.fill")
                         .font(.title3)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .background(Color(UIColor.secondarySystemBackground))
+                        .foregroundStyle(.primary)
+                        .padding(14)
+                        .background(.ultraThinMaterial)
                         .clipShape(Circle())
-                        .shadow(color: Color.primary.opacity(0.05), radius: 5, x: 0, y: 2)
+                        .overlay(
+                            Circle()
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [.white.opacity(0.3), .white.opacity(0.05)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 0.5
+                                )
+                        )
+                        .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
                 }
                 .accessibilityLabel(LocalizedStrings.getText("settings_accessibility", language: selectedLanguage))
             }
@@ -44,24 +55,37 @@ struct HomeView: View {
                 Button(action: {
                     openCard()
                 }) {
-                    HStack(spacing: 8) {
+                    HStack(spacing: 10) {
                         Image(systemName: "sparkles")
+                            .symbolRenderingMode(.hierarchical)
                         Text(LocalizedStrings.getText("give_me_vibe", language: selectedLanguage))
                             .fontWeight(.semibold)
                     }
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.purple, .pink, .orange],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
                     )
-                    .padding(.vertical, 16)
-                    .padding(.horizontal, 32)
-                    .background(Color(UIColor.secondarySystemBackground))
+                    .padding(.vertical, 18)
+                    .padding(.horizontal, 36)
+                    .background(.thinMaterial)
                     .clipShape(Capsule())
-                    .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 5)
+                    .overlay(
+                        Capsule()
+                            .stroke(
+                                LinearGradient(
+                                    colors: [.white.opacity(0.4), .white.opacity(0.1), .white.opacity(0.05)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                lineWidth: 0.5
+                            )
+                    )
+                    .shadow(color: .purple.opacity(0.2), radius: 20, x: 0, y: 8)
+                    .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
                 }
                 .accessibilityHint(LocalizedStrings.getText("card_accessibility_hint", language: selectedLanguage))
             }

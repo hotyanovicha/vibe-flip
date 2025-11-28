@@ -31,8 +31,8 @@ enum AppTheme: String, CaseIterable {
 // MARK: - Card Visual Styles
 
 enum CardStyle: String, CaseIterable {
-    case classic   // Clean minimalist (like the original)
-    case gradient  // Vibrant gradient look
+    case classic   // Apple Materials frosted glass style
+    case gradient  // Vibrant gradient with material overlay
     
     func localizedName(language: String) -> String {
         switch self {
@@ -46,9 +46,9 @@ enum CardStyle: String, CaseIterable {
     var iconName: String {
         switch self {
         case .classic:
-            return "square"
+            return "rectangle.on.rectangle.angled"
         case .gradient:
-            return "square.fill.on.square.fill"
+            return "sparkles.rectangle.stack"
         }
     }
 }

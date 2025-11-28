@@ -43,10 +43,12 @@ struct ContentView: View {
     }
 }
 
-// Separate view for background to properly handle color scheme changes
+// MARK: - Animated Material Background
 struct BackgroundView: View {
     let cardStyle: CardStyle
     let colorScheme: ColorScheme
+    
+    @State private var animateOrbs = false
     
     private var isDark: Bool {
         colorScheme == .dark
@@ -55,77 +57,146 @@ struct BackgroundView: View {
     var body: some View {
         switch cardStyle {
         case .classic:
-            // Subtle gradient background for glass effect
-            ZStack {
-                Rectangle()
-                    .fill(isDark ? Color.black : Color.white)
-                
-                // Soft ambient gradient
-                LinearGradient(
-                    colors: isDark
-                        ? [Color.purple.opacity(0.15), Color.blue.opacity(0.1)]
-                        : [Color.purple.opacity(0.08), Color.blue.opacity(0.05)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                
-                // Subtle accent
-                RadialGradient(
-                    colors: isDark
-                        ? [Color.pink.opacity(0.1), Color.clear]
-                        : [Color.pink.opacity(0.06), Color.clear],
-                    center: .bottomTrailing,
-                    startRadius: 100,
-                    endRadius: 400
-                )
+            // Apple Materials style: vibrant animated background
+            TimelineView(.animation(minimumInterval: 1/30)) { timeline in
+                Canvas { context, size in
+                    let time = timeline.date.timeIntervalSinceReferenceDate
+                    
+                    // Base color
+                    context.fill(
+                        Path(CGRect(origin: .zero, size: size)),
+                        with: .color(isDark ? Color(white: 0.08) : Color(white: 0.96))
+                    )
+                    
+                    // Animated orbs
+                    let orbs: [(Color, CGFloat, CGFloat, CGFloat, Double)] = [
+                        // (color, baseX, baseY, radius, speed)
+                        (Color.purple, 0.2, 0.3, 300, 0.3),
+                        (Color.blue, 0.8, 0.2, 250, 0.4),
+                        (Color.pink, 0.7, 0.8, 280, 0.35),
+                        (Color.cyan, 0.3, 0.7, 220, 0.45),
+                        (Color.indigo, 0.5, 0.5, 350, 0.25),
+                    ]
+                    
+                    for (color, baseX, baseY, radius, speed) in orbs {
+                        let offsetX = sin(time * speed) * 50
+                        let offsetY = cos(time * speed * 0.8) * 40
+                        
+                        let centerX = size.width * baseX + offsetX
+                        let centerY = size.height * baseY + offsetY
+                        
+                        let gradient = Gradient(colors: [
+                            color.opacity(isDark ? 0.4 : 0.3),
+                            color.opacity(0)
+                        ])
+                        
+                        context.fill(
+                            Circle().path(in: CGRect(
+                                x: centerX - radius,
+                                y: centerY - radius,
+                                width: radius * 2,
+                                height: radius * 2
+                            )),
+                            with: .radialGradient(
+                                gradient,
+                                center: CGPoint(x: centerX, y: centerY),
+                                startRadius: 0,
+                                endRadius: radius
+                            )
+                        )
+                    }
+                }
             }
             
         case .gradient:
-            // Vibrant gradient background
+            // Vibrant gradient background with animated orbs
             ZStack {
                 // Base rich gradient
                 LinearGradient(
                     colors: [
-                        Color(red: 0.3, green: 0.2, blue: 0.8),
-                        Color(red: 0.6, green: 0.2, blue: 0.7),
-                        Color(red: 0.8, green: 0.3, blue: 0.5)
+                        Color(red: 0.15, green: 0.1, blue: 0.35),
+                        Color(red: 0.25, green: 0.1, blue: 0.4),
+                        Color(red: 0.35, green: 0.15, blue: 0.35)
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
                 
-                // Floating orb top-right
-                RadialGradient(
-                    colors: [
-                        Color.cyan.opacity(0.4),
-                        Color.clear
-                    ],
-                    center: UnitPoint(x: 0.9, y: 0.1),
-                    startRadius: 20,
-                    endRadius: 200
-                )
-                
-                // Floating orb bottom-left
-                RadialGradient(
-                    colors: [
-                        Color.orange.opacity(0.3),
-                        Color.clear
-                    ],
-                    center: UnitPoint(x: 0.1, y: 0.85),
-                    startRadius: 30,
-                    endRadius: 250
-                )
-                
-                // Center glow
-                RadialGradient(
-                    colors: [
-                        Color.white.opacity(0.15),
-                        Color.clear
-                    ],
-                    center: .center,
-                    startRadius: 50,
-                    endRadius: 400
-                )
+                // Animated floating orbs
+                GeometryReader { geo in
+                    ZStack {
+                        // Cyan orb - top right
+                        Circle()
+                            .fill(
+                                RadialGradient(
+                                    colors: [Color.cyan.opacity(0.6), Color.cyan.opacity(0)],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: 150
+                                )
+                            )
+                            .frame(width: 300, height: 300)
+                            .offset(
+                                x: geo.size.width * 0.3 + (animateOrbs ? 20 : -20),
+                                y: -geo.size.height * 0.2 + (animateOrbs ? -15 : 15)
+                            )
+                        
+                        // Orange orb - bottom left
+                        Circle()
+                            .fill(
+                                RadialGradient(
+                                    colors: [Color.orange.opacity(0.5), Color.orange.opacity(0)],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: 180
+                                )
+                            )
+                            .frame(width: 360, height: 360)
+                            .offset(
+                                x: -geo.size.width * 0.3 + (animateOrbs ? -25 : 25),
+                                y: geo.size.height * 0.35 + (animateOrbs ? 20 : -20)
+                            )
+                        
+                        // Purple orb - center
+                        Circle()
+                            .fill(
+                                RadialGradient(
+                                    colors: [Color.purple.opacity(0.4), Color.purple.opacity(0)],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: 200
+                                )
+                            )
+                            .frame(width: 400, height: 400)
+                            .offset(
+                                x: animateOrbs ? 30 : -30,
+                                y: animateOrbs ? -20 : 20
+                            )
+                        
+                        // Pink orb - top left
+                        Circle()
+                            .fill(
+                                RadialGradient(
+                                    colors: [Color.pink.opacity(0.45), Color.pink.opacity(0)],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: 120
+                                )
+                            )
+                            .frame(width: 240, height: 240)
+                            .offset(
+                                x: -geo.size.width * 0.25 + (animateOrbs ? 15 : -15),
+                                y: -geo.size.height * 0.3 + (animateOrbs ? -10 : 10)
+                            )
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .blur(radius: 60)
+            }
+            .onAppear {
+                withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
+                    animateOrbs = true
+                }
             }
         }
     }
