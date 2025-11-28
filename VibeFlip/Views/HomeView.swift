@@ -18,11 +18,11 @@ struct HomeView: View {
                 }) {
                     Image(systemName: "gearshape")
                         .font(.system(size: 20))
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                         .padding()
-                        .background(Color.white)
+                        .background(Color(UIColor.secondarySystemBackground))
                         .clipShape(Circle())
-                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+                        .shadow(color: Color.primary.opacity(0.05), radius: 5, x: 0, y: 2)
                 }
             }
             .padding(.horizontal)
@@ -53,9 +53,9 @@ struct HomeView: View {
                     )
                     .padding(.vertical, 16)
                     .padding(.horizontal, 32)
-                    .background(Color.white)
+                    .background(Color(UIColor.secondarySystemBackground))
                     .clipShape(Capsule())
-                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 5)
                 }
             }
             

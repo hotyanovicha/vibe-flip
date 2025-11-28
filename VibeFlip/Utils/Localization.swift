@@ -13,6 +13,26 @@ struct LocalizedStrings {
                 "English": "LANGUAGE",
                 "Español": "IDIOMA"
             ],
+            "theme_section": [
+                "Русский": "ТЕМА",
+                "English": "THEME",
+                "Español": "TEMA"
+            ],
+            "theme_system": [
+                "Русский": "Системная",
+                "English": "System",
+                "Español": "Sistema"
+            ],
+            "theme_light": [
+                "Русский": "Светлая",
+                "English": "Light",
+                "Español": "Clara"
+            ],
+            "theme_dark": [
+                "Русский": "Тёмная",
+                "English": "Dark",
+                "Español": "Oscura"
+            ],
             "give_me_vibe": [
                 "Русский": "Дай мне вайб",
                 "English": "Give me vibe",
