@@ -6,12 +6,7 @@ struct HomeView: View {
     
     @State private var isCardOpen = false
     @State private var currentCard: MotivationCard?
-    @AppStorage("selectedCardStyle") private var selectedCardStyle = CardStyle.classic.rawValue
     @AppStorage("selectedLanguage") private var selectedLanguage = "English"
-    
-    private var currentCardStyle: CardStyle {
-        CardStyle(rawValue: selectedCardStyle) ?? .classic
-    }
     
     var body: some View {
         VStack {
@@ -78,43 +73,40 @@ struct HomeView: View {
             
             // Main Content
             if isCardOpen, let card = currentCard {
-                CardView(card: card, style: currentCardStyle)
+                CardView(card: card)
                     .transition(.scale.combined(with: .opacity))
             } else {
                 Button(action: {
                     openCard()
                 }) {
-                    HStack(spacing: 10) {
+                    HStack(spacing: 12) {
                         Image(systemName: "sparkles")
-                            .symbolRenderingMode(.hierarchical)
+                            .font(.system(size: 18, weight: .medium))
                         Text(LocalizedStrings.getText("give_me_vibe", language: selectedLanguage))
-                            .fontWeight(.semibold)
+                            .font(.system(size: 17, weight: .semibold))
                     }
-                    .font(.title3)
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.purple, .pink, .orange],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .padding(.vertical, 18)
-                    .padding(.horizontal, 36)
-                    .background(.thinMaterial)
+                    .foregroundStyle(.primary)
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 32)
+                    .background(.ultraThinMaterial)
                     .clipShape(Capsule())
                     .overlay(
                         Capsule()
                             .stroke(
                                 LinearGradient(
-                                    colors: [.white.opacity(0.4), .white.opacity(0.1), .white.opacity(0.05)],
+                                    colors: [
+                                        Color.white.opacity(0.5),
+                                        Color.white.opacity(0.15),
+                                        Color.white.opacity(0.05)
+                                    ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
-                                lineWidth: 0.5
+                                lineWidth: 1
                             )
                     )
-                    .shadow(color: .purple.opacity(0.2), radius: 20, x: 0, y: 8)
-                    .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+                    .shadow(color: .black.opacity(0.15), radius: 20, x: 0, y: 10)
+                    .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
                 }
                 .accessibilityHint(LocalizedStrings.getText("card_accessibility_hint", language: selectedLanguage))
             }

@@ -5,7 +5,6 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var systemColorScheme
     @AppStorage("selectedLanguage") private var selectedLanguage = "Русский"
     @AppStorage("selectedTheme") private var selectedTheme = AppTheme.system.rawValue
-    @AppStorage("selectedCardStyle") private var selectedCardStyle = CardStyle.classic.rawValue
     
     let languages = ["Русский", "English", "Español"]
     
@@ -47,35 +46,6 @@ struct SettingsView: View {
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 selectedTheme = theme.rawValue
-                                HapticManager.shared.selection()
-                            }
-                        }
-                    }
-                    .listRowBackground(Color.clear.background(.thinMaterial))
-                    
-                    // Card Style Section
-                    Section(header: Text(LocalizedStrings.getText("card_style_section", language: selectedLanguage))) {
-                        ForEach(CardStyle.allCases, id: \.self) { cardStyle in
-                            HStack {
-                                Image(systemName: cardStyle.iconName)
-                                    .foregroundStyle(
-                                        LinearGradient(
-                                            colors: [.purple, .pink],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        )
-                                    )
-                                    .frame(width: 24)
-                                Text(cardStyle.localizedName(language: selectedLanguage))
-                                Spacer()
-                                if cardStyle.rawValue == selectedCardStyle {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundStyle(.purple)
-                                }
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                selectedCardStyle = cardStyle.rawValue
                                 HapticManager.shared.selection()
                             }
                         }
