@@ -5,8 +5,9 @@ struct HomeView: View {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     
     @State private var isCardOpen = false
-    @State private var card: MotivationCard?
+    @State private var currentCard: MotivationCard?
     @AppStorage("selectedCardStyle") private var selectedCardStyle = CardStyle.classic.rawValue
+    @AppStorage("selectedLanguage") private var selectedLanguage = "English"
     
     private var currentCardStyle: CardStyle {
         CardStyle(rawValue: selectedCardStyle) ?? .classic
@@ -76,7 +77,7 @@ struct HomeView: View {
             Spacer()
             
             // Main Content
-            if isCardOpen, let card = card {
+            if isCardOpen, let card = currentCard {
                 CardView(card: card, style: currentCardStyle)
                     .transition(.scale.combined(with: .opacity))
             } else {
@@ -126,16 +127,14 @@ struct HomeView: View {
         }
         .onChange(of: selectedLanguage) {
             isCardOpen = false
-            card = nil
+            currentCard = nil
         }
     }
-    
-    @AppStorage("selectedLanguage") private var selectedLanguage = "English"
 
     private func openCard() {
         HapticManager.shared.impact(style: .medium)
         let today = Date()
-        card = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
+        currentCard = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
         
         if reduceMotion {
             isCardOpen = true
@@ -151,22 +150,14 @@ struct HomeView: View {
         
         if reduceMotion {
             isCardOpen = false
-            card = nil
+            currentCard = nil
         } else {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                 isCardOpen = false
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                card = nil
+                currentCard = nil
             }
-        }
-    }
-    
-    private func checkIfAlreadyOpened() {
-        let today = Date()
-        if HistoryManager.shared.isOpened(date: today) {
-            card = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
-            isCardOpen = true
         }
     }
 }

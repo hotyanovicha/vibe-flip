@@ -56,4 +56,21 @@ class DailyProvider {
         
         return card
     }
+    
+    /// Get a random card excluding cards already in the current stack
+    func getRandomCard(excluding excludedIds: [String], language: String = "English") -> MotivationCard {
+        let localizedCards = cards[language] ?? cards["English"] ?? []
+        
+        if localizedCards.isEmpty {
+            return MotivationCard(id: "fallback", text: "Welcome to VibeFlip", action: nil, category: .zen)
+        }
+        
+        // Filter out excluded cards
+        let availableCards = localizedCards.filter { !excludedIds.contains($0.id) }
+        
+        // If all cards are excluded, just pick any random card
+        let pool = availableCards.isEmpty ? localizedCards : availableCards
+        
+        return pool.randomElement() ?? localizedCards[0]
+    }
 }

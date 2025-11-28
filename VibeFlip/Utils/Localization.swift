@@ -68,6 +68,11 @@ struct LocalizedStrings {
                 "Русский": "Градиент",
                 "English": "Gradient",
                 "Español": "Gradiente"
+            ],
+            "one_more_please": [
+                "Русский": "Ещё одну",
+                "English": "One more please",
+                "Español": "Una más"
             ]
         ]
         
