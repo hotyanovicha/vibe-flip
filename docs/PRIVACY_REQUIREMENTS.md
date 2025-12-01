@@ -230,3 +230,4 @@ Although VibeFlip doesn't collect data, be aware of:
 - [Required Reason APIs](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api)
 - [User Defaults API Declaration](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api#4278393)
 
+

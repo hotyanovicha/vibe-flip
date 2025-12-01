@@ -3,10 +3,74 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var systemColorScheme
-    @AppStorage("selectedLanguage") private var selectedLanguage = "Русский"
+    @AppStorage("selectedLanguage") private var selectedLanguage = "English"
     @AppStorage("selectedTheme") private var selectedTheme = AppTheme.system.rawValue
     
+    // Notification Settings
+    @AppStorage("notificationStartHour") private var notificationStartHour = 9
+    @AppStorage("notificationStartMinute") private var notificationStartMinute = 0
+    @AppStorage("notificationEndHour") private var notificationEndHour = 22
+    @AppStorage("notificationEndMinute") private var notificationEndMinute = 0
+    @AppStorage("notificationCount") private var notificationCount = 5
+    @AppStorage("notificationsEnabled") private var notificationsEnabled = false
+    
     let languages = ["Русский", "English", "Español"]
+    
+    // MARK: - Notification Computed Properties
+    
+    private var startTime: Date {
+        get {
+            var components = DateComponents()
+            components.hour = notificationStartHour
+            components.minute = notificationStartMinute
+            return Calendar.current.date(from: components) ?? Date()
+        }
+    }
+    
+    private var endTime: Date {
+        get {
+            var components = DateComponents()
+            components.hour = notificationEndHour
+            components.minute = notificationEndMinute
+            return Calendar.current.date(from: components) ?? Date()
+        }
+    }
+    
+    private var totalMinutes: Int {
+        let startTotalMinutes = notificationStartHour * 60 + notificationStartMinute
+        var endTotalMinutes = notificationEndHour * 60 + notificationEndMinute
+        if endTotalMinutes <= startTotalMinutes {
+            endTotalMinutes += 24 * 60
+        }
+        return endTotalMinutes - startTotalMinutes
+    }
+    
+    private var maxNotificationCount: Int {
+        max(1, (totalMinutes / 30) + 1)
+    }
+    
+    private var intervalMinutes: Int {
+        if notificationCount <= 1 {
+            return totalMinutes
+        }
+        return totalMinutes / (notificationCount - 1)
+    }
+    
+    private var formattedInterval: String {
+        let hours = intervalMinutes / 60
+        let minutes = intervalMinutes % 60
+        let prefix = LocalizedStrings.getText("notification_interval_prefix", language: selectedLanguage)
+        let hourSuffix = LocalizedStrings.getText("notification_hours", language: selectedLanguage)
+        let minSuffix = LocalizedStrings.getText("notification_minutes", language: selectedLanguage)
+        
+        if hours > 0 && minutes > 0 {
+            return "\(prefix)\(hours)\(hourSuffix) \(minutes)\(minSuffix)"
+        } else if hours > 0 {
+            return "\(prefix)\(hours)\(hourSuffix)"
+        } else {
+            return "\(prefix)\(minutes)\(minSuffix)"
+        }
+    }
     
     private var currentTheme: AppTheme {
         AppTheme(rawValue: selectedTheme) ?? .system
@@ -71,6 +135,140 @@ struct SettingsView: View {
                         }
                     }
                     .listRowBackground(Color.clear.background(.thinMaterial))
+                    
+                    // Notifications Section
+                    Section(header: Text(LocalizedStrings.getText("notifications_section", language: selectedLanguage))) {
+                        // Count Row with custom stepper
+                        HStack {
+                            Text(LocalizedStrings.getText("notification_count", language: selectedLanguage))
+                            Spacer()
+                            
+                            // Custom Stepper
+                            HStack(spacing: 12) {
+                                // Minus Button
+                                Button {
+                                    if notificationCount > 1 {
+                                        notificationCount -= 1
+                                        HapticManager.shared.selection()
+                                        updateNotifications()
+                                    }
+                                } label: {
+                                    Image(systemName: "minus")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundStyle(.primary)
+                                        .frame(width: 32, height: 32)
+                                        .background(.ultraThinMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [.white.opacity(0.3), .white.opacity(0.05)],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 0.5
+                                                )
+                                        )
+                                }
+                                .buttonStyle(.borderless)
+                                .opacity(notificationCount > 1 ? 1 : 0.4)
+                                .disabled(notificationCount <= 1)
+                                
+                                // Count Value
+                                Text("\(notificationCount)\(LocalizedStrings.getText("notification_times_suffix", language: selectedLanguage))")
+                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                    .monospacedDigit()
+                                    .frame(minWidth: 40)
+                                    .contentTransition(.numericText())
+                                    .animation(.snappy, value: notificationCount)
+                                
+                                // Plus Button
+                                Button {
+                                    if notificationCount < maxNotificationCount {
+                                        notificationCount += 1
+                                        HapticManager.shared.selection()
+                                        updateNotifications()
+                                    }
+                                } label: {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundStyle(.primary)
+                                        .frame(width: 32, height: 32)
+                                        .background(.ultraThinMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [.white.opacity(0.3), .white.opacity(0.05)],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 0.5
+                                                )
+                                        )
+                                }
+                                .buttonStyle(.borderless)
+                                .opacity(notificationCount < maxNotificationCount ? 1 : 0.4)
+                                .disabled(notificationCount >= maxNotificationCount)
+                            }
+                        }
+                        
+                        // Start Time Row
+                        HStack {
+                            Text(LocalizedStrings.getText("notification_start", language: selectedLanguage))
+                            Spacer()
+                            DatePicker(
+                                "",
+                                selection: Binding(
+                                    get: { startTime },
+                                    set: { newValue in
+                                        let components = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                                        notificationStartHour = components.hour ?? 9
+                                        notificationStartMinute = components.minute ?? 0
+                                        clampNotificationCount()
+                                        HapticManager.shared.selection()
+                                        updateNotifications()
+                                    }
+                                ),
+                                displayedComponents: [.hourAndMinute]
+                            )
+                            .labelsHidden()
+                        }
+                        
+                        // End Time Row
+                        HStack {
+                            Text(LocalizedStrings.getText("notification_end", language: selectedLanguage))
+                            Spacer()
+                            DatePicker(
+                                "",
+                                selection: Binding(
+                                    get: { endTime },
+                                    set: { newValue in
+                                        let components = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                                        notificationEndHour = components.hour ?? 22
+                                        notificationEndMinute = components.minute ?? 0
+                                        clampNotificationCount()
+                                        HapticManager.shared.selection()
+                                        updateNotifications()
+                                    }
+                                ),
+                                displayedComponents: [.hourAndMinute]
+                            )
+                            .labelsHidden()
+                        }
+                        
+                        // Interval Info
+                        HStack {
+                            Spacer()
+                            Text(formattedInterval)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                        }
+                    }
+                    .listRowBackground(Color.clear.background(.thinMaterial))
                 }
                 .scrollContentBackground(.hidden)
             }
@@ -87,6 +285,39 @@ struct SettingsView: View {
         }
         .preferredColorScheme(currentTheme.colorScheme)
         .animation(.easeInOut(duration: 0.2), value: effectiveColorScheme)
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func clampNotificationCount() {
+        if notificationCount > maxNotificationCount {
+            notificationCount = maxNotificationCount
+        }
+        if notificationCount < 1 {
+            notificationCount = 1
+        }
+    }
+    
+    private func updateNotifications() {
+        NotificationManager.shared.startHour = notificationStartHour
+        NotificationManager.shared.startMinute = notificationStartMinute
+        NotificationManager.shared.endHour = notificationEndHour
+        NotificationManager.shared.endMinute = notificationEndMinute
+        NotificationManager.shared.notificationCount = notificationCount
+        
+        // Request permission if not already granted, then schedule
+        NotificationManager.shared.checkAuthorizationStatus { authorized in
+            if authorized {
+                NotificationManager.shared.isEnabled = true
+                NotificationManager.shared.scheduleNotifications()
+            } else {
+                NotificationManager.shared.requestAuthorization { granted in
+                    if granted {
+                        NotificationManager.shared.scheduleNotifications()
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Background

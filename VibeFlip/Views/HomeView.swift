@@ -125,6 +125,8 @@ struct HomeView: View {
 
     private func openCard() {
         HapticManager.shared.impact(style: .medium)
+        SoundManager.shared.playCardReveal()
+        
         let today = Date()
         currentCard = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
         

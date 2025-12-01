@@ -172,3 +172,4 @@ Document what makes VibeFlip unique:
 - [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
 - [Screenshot Specifications](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications)
 
+

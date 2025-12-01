@@ -73,6 +73,47 @@ struct LocalizedStrings {
                 "Русский": "Ещё одну",
                 "English": "One more please",
                 "Español": "Una más"
+            ],
+            // Notification Settings
+            "notifications_section": [
+                "Русский": "УВЕДОМЛЕНИЯ",
+                "English": "NOTIFICATIONS",
+                "Español": "NOTIFICACIONES"
+            ],
+            "notification_count": [
+                "Русский": "Количество",
+                "English": "Count",
+                "Español": "Cantidad"
+            ],
+            "notification_start": [
+                "Русский": "Начало",
+                "English": "Start",
+                "Español": "Inicio"
+            ],
+            "notification_end": [
+                "Русский": "Окончание",
+                "English": "End",
+                "Español": "Fin"
+            ],
+            "notification_times_suffix": [
+                "Русский": "×",
+                "English": "×",
+                "Español": "×"
+            ],
+            "notification_interval_prefix": [
+                "Русский": "Каждые ~",
+                "English": "Every ~",
+                "Español": "Cada ~"
+            ],
+            "notification_hours": [
+                "Русский": "ч",
+                "English": "h",
+                "Español": "h"
+            ],
+            "notification_minutes": [
+                "Русский": "мин",
+                "English": "min",
+                "Español": "min"
             ]
         ]
         

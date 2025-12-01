@@ -346,3 +346,4 @@ Picker("Language", selection: $selectedLanguage) {
 - [Accessibility in SwiftUI](https://developer.apple.com/documentation/swiftui/accessibility)
 - [App Icon Guidelines](https://developer.apple.com/design/human-interface-guidelines/app-icons)
 
+
