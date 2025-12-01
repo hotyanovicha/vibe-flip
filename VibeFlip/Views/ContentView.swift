@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var shouldAutoReveal: Bool
     @State private var showSettings = false
     @AppStorage("selectedTheme") private var selectedTheme = AppTheme.system.rawValue
     @Environment(\.colorScheme) var systemColorScheme
@@ -28,7 +29,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
                 .animation(.easeInOut(duration: 0.3), value: effectiveColorScheme)
             
-            HomeView(showSettings: $showSettings)
+            HomeView(showSettings: $showSettings, shouldAutoReveal: $shouldAutoReveal)
         }
         .sheet(isPresented: $showSettings) {
             SettingsView()

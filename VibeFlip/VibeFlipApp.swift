@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct VibeFlipApp: App {
     @Environment(\.scenePhase) var scenePhase
+    @State private var shouldAutoReveal = false
     
     init() {
         // Request notification permissions and schedule notifications on app launch
@@ -11,7 +12,10 @@ struct VibeFlipApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(shouldAutoReveal: $shouldAutoReveal)
+                .onOpenURL { url in
+                    handleDeepLink(url)
+                }
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             // Reschedule notifications when app becomes active
@@ -22,6 +26,21 @@ struct VibeFlipApp: App {
                     }
                 }
             }
+        }
+    }
+    
+    private func handleDeepLink(_ url: URL) {
+        guard url.scheme == "vibeflip" else { return }
+        
+        switch url.host {
+        case "reveal":
+            // Widget tapped when quote not revealed - auto-reveal the card
+            shouldAutoReveal = true
+        case "home":
+            // Widget tapped when quote is revealed - just open app (no action needed)
+            break
+        default:
+            break
         }
     }
 }

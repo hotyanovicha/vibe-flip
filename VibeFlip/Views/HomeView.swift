@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var showSettings: Bool
+    @Binding var shouldAutoReveal: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     
     @State private var isCardOpen = false
@@ -121,6 +122,24 @@ struct HomeView: View {
             isCardOpen = false
             currentCard = nil
         }
+        .onChange(of: shouldAutoReveal) { _, newValue in
+            if newValue && !isCardOpen {
+                // Auto-reveal card from widget deep link
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    openCard()
+                    shouldAutoReveal = false
+                }
+            }
+        }
+        .onAppear {
+            // Handle case where app is launched fresh via deep link
+            if shouldAutoReveal && !isCardOpen {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    openCard()
+                    shouldAutoReveal = false
+                }
+            }
+        }
     }
 
     private func openCard() {
@@ -128,7 +147,11 @@ struct HomeView: View {
         SoundManager.shared.playCardReveal()
         
         let today = Date()
-        currentCard = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
+        let card = DailyProvider.shared.getCard(for: today, language: selectedLanguage)
+        currentCard = card
+        
+        // Save quote for widget
+        HistoryManager.shared.saveQuoteForWidget(text: card.text, action: card.action, date: today)
         
         if reduceMotion {
             isCardOpen = true
