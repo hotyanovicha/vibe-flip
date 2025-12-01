@@ -69,6 +69,10 @@ struct CardView: View {
         // Liquid Glass shadow - soft and diffused
         .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.4 : 0.12), radius: 30, x: 0, y: 15)
         .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.2 : 0.06), radius: 10, x: 0, y: 5)
+        // Fixed aspect ratio - wider and shorter card
+        .aspectRatio(0.75, contentMode: .fit) // 3:4 ratio (width:height)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 20)
         // Smooth offset
         .offset(x: offset.width * 0.25, y: offset.height * 0.25)
         // Subtle rotation
@@ -79,7 +83,6 @@ struct CardView: View {
         .simultaneousGesture(pressGesture)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(card.action != nil ? "\(card.text). \(LocalizedStrings.getText("challenge", language: selectedLanguage)): \(card.action!)" : card.text)
-        .padding(.horizontal, 24)
         .onAppear {
             HapticManager.shared.notification(type: .success)
         }

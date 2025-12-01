@@ -18,7 +18,7 @@ struct QuoteRevealedView: View {
         VStack(spacing: 0) {
             Spacer(minLength: widgetFamily == .systemSmall ? 8 : 16)
             
-            // Quote text only
+            // Quote text
             Text(quote.text)
                 .font(quoteFont)
                 .fontWeight(.medium)
@@ -28,15 +28,21 @@ struct QuoteRevealedView: View {
                 .minimumScaleFactor(0.7)
                 .padding(.horizontal, widgetFamily == .systemSmall ? 12 : 20)
             
-            // Action text for medium and large widget
-            if (widgetFamily == .systemMedium || widgetFamily == .systemLarge), let action = quote.action {
-                Spacer(minLength: widgetFamily == .systemMedium ? 12 : 16)
+            // Action text for ALL widget sizes
+            if let action = quote.action {
+                Spacer(minLength: widgetFamily == .systemSmall ? 8 : (widgetFamily == .systemMedium ? 12 : 16))
                 
                 if widgetFamily == .systemLarge {
+                    // Large widget - full action with divider and label
                     VStack(spacing: 8) {
                         Rectangle()
                             .fill(.primary.opacity(0.1))
                             .frame(width: 32, height: 1)
+                        
+                        Text("CHALLENGE")
+                            .font(.system(size: 11, weight: .semibold))
+                            .tracking(1.5)
+                            .foregroundStyle(.tertiary)
                         
                         Text(action)
                             .font(.system(size: 14, weight: .regular))
@@ -46,15 +52,38 @@ struct QuoteRevealedView: View {
                             .minimumScaleFactor(0.8)
                             .padding(.horizontal, 24)
                     }
+                } else if widgetFamily == .systemMedium {
+                    // Medium widget - condensed action with label
+                    VStack(spacing: 6) {
+                        Text("CHALLENGE")
+                            .font(.system(size: 9, weight: .semibold))
+                            .tracking(1.0)
+                            .foregroundStyle(.tertiary)
+                        
+                        Text(action)
+                            .font(.system(size: 12, weight: .regular))
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.8)
+                            .padding(.horizontal, 16)
+                    }
                 } else {
-                    // Medium widget - condensed action
-                    Text(action)
-                        .font(.system(size: 12, weight: .regular))
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.8)
-                        .padding(.horizontal, 16)
+                    // Small widget - compact action with label
+                    VStack(spacing: 4) {
+                        Text("CHALLENGE")
+                            .font(.system(size: 8, weight: .semibold))
+                            .tracking(0.5)
+                            .foregroundStyle(.tertiary)
+                        
+                        Text(action)
+                            .font(.system(size: 10, weight: .regular))
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.75)
+                            .padding(.horizontal, 12)
+                    }
                 }
             }
             
@@ -67,7 +96,7 @@ struct QuoteRevealedView: View {
     private var quoteLineLimit: Int {
         switch widgetFamily {
         case .systemSmall:
-            return 6
+            return quote.action != nil ? 4 : 6 // Less lines if action present
         case .systemMedium:
             return 3
         case .systemLarge:

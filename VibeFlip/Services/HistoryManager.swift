@@ -17,7 +17,12 @@ class HistoryManager: ObservableObject {
     private let widgetActionKey = "widgetAction"
     
     private var sharedDefaults: UserDefaults? {
-        UserDefaults(suiteName: HistoryManager.appGroupIdentifier)
+        #if targetEnvironment(simulator)
+        // Use standard UserDefaults in simulator if App Group causes issues
+        return UserDefaults.standard
+        #else
+        return UserDefaults(suiteName: HistoryManager.appGroupIdentifier)
+        #endif
     }
     
     private init() {

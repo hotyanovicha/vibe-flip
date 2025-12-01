@@ -17,7 +17,12 @@ struct WidgetDataProvider {
     private static let shownCardsKey = "shownCards"
     
     private static var sharedDefaults: UserDefaults? {
-        UserDefaults(suiteName: appGroupIdentifier)
+        #if targetEnvironment(simulator)
+        // Use standard UserDefaults in simulator if App Group causes issues
+        return UserDefaults.standard
+        #else
+        return UserDefaults(suiteName: appGroupIdentifier)
+        #endif
     }
     
     /// Get today's quote data for widget display
