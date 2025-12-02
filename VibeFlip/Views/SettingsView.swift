@@ -1,5 +1,6 @@
 import SwiftUI
 import WidgetKit
+import WidgetKit
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -15,7 +16,16 @@ struct SettingsView: View {
     @AppStorage("notificationCount") private var notificationCount = 5
     @AppStorage("notificationsEnabled") private var notificationsEnabled = false
     
-    let languages = LanguageManager.supportedLanguages
+    let languages = ["Русский", "English", "Español"]
+    
+    // Shared defaults for widget
+    private var sharedDefaults: UserDefaults? {
+        #if targetEnvironment(simulator)
+        return UserDefaults.standard
+        #else
+        return UserDefaults(suiteName: HistoryManager.appGroupIdentifier)
+        #endif
+    }
     
     // MARK: - Notification Computed Properties
     
@@ -131,8 +141,7 @@ struct SettingsView: View {
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 selectedLanguage = language
-                                // Sync language with widget through LanguageManager
-                                LanguageManager.shared.setLanguage(language)
+                                saveLanguageToSharedDefaults(language)
                                 HapticManager.shared.selection()
                             }
                         }
@@ -288,9 +297,20 @@ struct SettingsView: View {
         }
         .preferredColorScheme(currentTheme.colorScheme)
         .animation(.easeInOut(duration: 0.2), value: effectiveColorScheme)
+        .onAppear {
+            // Sync language to shared defaults on appear
+            saveLanguageToSharedDefaults(selectedLanguage)
+        }
     }
     
     // MARK: - Helper Methods
+    
+    private func saveLanguageToSharedDefaults(_ language: String) {
+        sharedDefaults?.set(language, forKey: "selectedLanguage")
+        sharedDefaults?.synchronize()
+        // Reload widget to reflect language change
+        WidgetCenter.shared.reloadAllTimelines()
+    }
     
     private func clampNotificationCount() {
         if notificationCount > maxNotificationCount {

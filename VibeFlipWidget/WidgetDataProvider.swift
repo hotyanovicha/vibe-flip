@@ -26,6 +26,19 @@ struct WidgetDataProvider {
         #endif
     }
     
+    /// Get the selected language for the widget
+    static func getSelectedLanguage() -> String {
+        // First try shared defaults (App Group)
+        if let language = sharedDefaults?.string(forKey: selectedLanguageKey), !language.isEmpty {
+            return language
+        }
+        // Fall back to standard UserDefaults
+        if let language = UserDefaults.standard.string(forKey: selectedLanguageKey), !language.isEmpty {
+            return language
+        }
+        return "English"
+    }
+    
     /// Get today's quote data for widget display
     /// Checks both widget-specific data and history data
     static func getTodayQuote() -> WidgetQuoteData? {
