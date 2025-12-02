@@ -114,6 +114,84 @@ struct LocalizedStrings {
                 "Русский": "мин",
                 "English": "min",
                 "Español": "min"
+            ],
+            // Widget Localization
+            "widget_daily_vibe": [
+                "Русский": "Твой вайб дня",
+                "English": "Your daily vibe",
+                "Español": "Tu vibra diaria"
+            ],
+            "widget_tap_to_reveal": [
+                "Русский": "Нажми, чтобы открыть",
+                "English": "Tap to reveal",
+                "Español": "Toca para revelar"
+            ],
+            "widget_quote_revealed": [
+                "Русский": "Цитата открыта!",
+                "English": "Quote revealed!",
+                "Español": "¡Cita revelada!"
+            ],
+            "widget_open_app": [
+                "Русский": "Открой приложение",
+                "English": "Open app to see it here",
+                "Español": "Abre la app para verla"
+            ],
+            "widget_display_name": [
+                "Русский": "Вайб дня",
+                "English": "Daily Vibe",
+                "Español": "Vibra Diaria"
+            ],
+            "widget_description": [
+                "Русский": "Твоя ежедневная мотивационная цитата.",
+                "English": "See your daily motivation quote.",
+                "Español": "Ve tu cita motivacional diaria."
+            ]
+        ]
+        
+        return dict[key]?[language] ?? dict[key]?["English"] ?? key
+    }
+}
+
+// MARK: - Widget Localization Helper
+// This is a duplicate for widget target since widgets can't access main app code
+
+struct WidgetLocalizedStrings {
+    static func getText(_ key: String, language: String) -> String {
+        let dict: [String: [String: String]] = [
+            "challenge": [
+                "Русский": "ВЫЗОВ",
+                "English": "CHALLENGE",
+                "Español": "DESAFÍO"
+            ],
+            "widget_daily_vibe": [
+                "Русский": "Твой вайб дня",
+                "English": "Your daily vibe",
+                "Español": "Tu vibra diaria"
+            ],
+            "widget_tap_to_reveal": [
+                "Русский": "Нажми, чтобы открыть",
+                "English": "Tap to reveal",
+                "Español": "Toca para revelar"
+            ],
+            "widget_quote_revealed": [
+                "Русский": "Цитата открыта!",
+                "English": "Quote revealed!",
+                "Español": "¡Cita revelada!"
+            ],
+            "widget_open_app": [
+                "Русский": "Открой приложение",
+                "English": "Open app to see it here",
+                "Español": "Abre la app para verla"
+            ],
+            "widget_display_name": [
+                "Русский": "Вайб дня",
+                "English": "Daily Vibe",
+                "Español": "Vibra Diaria"
+            ],
+            "widget_description": [
+                "Русский": "Твоя ежедневная мотивационная цитата.",
+                "English": "See your daily motivation quote.",
+                "Español": "Ve tu cita motivacional diaria."
             ]
         ]
         

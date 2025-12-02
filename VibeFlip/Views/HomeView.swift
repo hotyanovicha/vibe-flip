@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct HomeView: View {
     @Binding var showSettings: Bool
@@ -8,6 +9,14 @@ struct HomeView: View {
     @State private var isCardOpen = false
     @State private var currentCard: MotivationCard?
     @AppStorage("selectedLanguage") private var selectedLanguage = "English"
+    
+    // Sync language on view appear
+    private func syncLanguageFromManager() {
+        let managerLanguage = LanguageManager.shared.currentLanguage
+        if selectedLanguage != managerLanguage {
+            selectedLanguage = managerLanguage
+        }
+    }
     
     var body: some View {
         VStack {
@@ -118,9 +127,14 @@ struct HomeView: View {
             Spacer()
                 .frame(height: 20)
         }
-        .onChange(of: selectedLanguage) {
+        .onChange(of: selectedLanguage) { oldValue, newValue in
             isCardOpen = false
             currentCard = nil
+            
+            // Ensure LanguageManager is synced (in case language changed outside settings)
+            if LanguageManager.shared.currentLanguage != newValue {
+                LanguageManager.shared.setLanguage(newValue)
+            }
         }
         .onChange(of: shouldAutoReveal) { _, newValue in
             if newValue && !isCardOpen {
@@ -132,6 +146,9 @@ struct HomeView: View {
             }
         }
         .onAppear {
+            // Sync language from LanguageManager (in case it was auto-detected)
+            syncLanguageFromManager()
+            
             // Handle case where app is launched fresh via deep link
             if shouldAutoReveal && !isCardOpen {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

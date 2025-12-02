@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 @main
 struct VibeFlipApp: App {
@@ -6,6 +7,9 @@ struct VibeFlipApp: App {
     @State private var shouldAutoReveal = false
     
     init() {
+        // Initialize language manager (detects system language on first launch)
+        _ = LanguageManager.shared
+        
         // Request notification permissions and schedule notifications on app launch
         NotificationManager.shared.requestAuthorization()
     }
@@ -25,6 +29,11 @@ struct VibeFlipApp: App {
                         NotificationManager.shared.scheduleNotifications()
                     }
                 }
+            }
+            
+            // Reload widgets when app goes to background (to sync any changes)
+            if newPhase == .background {
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }
