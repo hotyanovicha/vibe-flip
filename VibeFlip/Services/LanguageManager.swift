@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import WidgetKit
 
 class LanguageManager: ObservableObject {
@@ -20,6 +21,9 @@ class LanguageManager: ObservableObject {
     
     // Available languages
     static let supportedLanguages = ["English", "Русский", "Español"]
+    
+    // Published property for SwiftUI reactivity
+    @Published private(set) var currentLanguage: String = "English"
     
     // Mapping of system language codes to app language names
     private let languageCodeMapping: [String: String] = [
@@ -38,18 +42,8 @@ class LanguageManager: ObservableObject {
     
     private init() {
         initializeLanguageIfNeeded()
-    }
-    
-    // MARK: - Public Methods
-    
-    /// Get the currently selected language
-    var currentLanguage: String {
-        get {
-            return sharedDefaults?.string(forKey: selectedLanguageKey) ?? "English"
-        }
-        set {
-            setLanguage(newValue)
-        }
+        // Load current language after initialization
+        currentLanguage = sharedDefaults?.string(forKey: selectedLanguageKey) ?? "English"
     }
     
     /// Set the language and sync with widget
@@ -58,6 +52,9 @@ class LanguageManager: ObservableObject {
             print("⚠️ VibeFlip: Unsupported language: \(language)")
             return
         }
+        
+        // Update published property
+        currentLanguage = language
         
         // Save to shared defaults for widget access
         sharedDefaults?.set(language, forKey: selectedLanguageKey)
@@ -114,6 +111,9 @@ class LanguageManager: ObservableObject {
             
             // Also update standard UserDefaults
             UserDefaults.standard.set(systemLanguage, forKey: selectedLanguageKey)
+            
+            // Update published property
+            currentLanguage = systemLanguage
             
             print("🌐 VibeFlip: First launch - Language auto-detected as \(systemLanguage)")
         } else {

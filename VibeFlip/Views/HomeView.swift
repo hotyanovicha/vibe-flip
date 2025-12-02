@@ -135,6 +135,9 @@ struct HomeView: View {
             if LanguageManager.shared.currentLanguage != newValue {
                 LanguageManager.shared.setLanguage(newValue)
             }
+            
+            // Refresh widget quote in new language if already revealed today
+            refreshWidgetQuoteForLanguage(newValue)
         }
         .onChange(of: shouldAutoReveal) { _, newValue in
             if newValue && !isCardOpen {
@@ -193,5 +196,20 @@ struct HomeView: View {
                 currentCard = nil
             }
         }
+    }
+    
+    /// Refresh widget quote text when language changes
+    private func refreshWidgetQuoteForLanguage(_ language: String) {
+        let today = Date()
+        // Check if a quote was already revealed today
+        guard HistoryManager.shared.getCardId(for: today) != nil else {
+            return // No quote revealed today, nothing to refresh
+        }
+        
+        // Get the card in the new language
+        let card = DailyProvider.shared.getCard(for: today, language: language)
+        
+        // Re-save the localized quote for the widget
+        HistoryManager.shared.saveQuoteForWidget(text: card.text, action: card.action, date: today)
     }
 }

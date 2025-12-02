@@ -1,6 +1,5 @@
 import SwiftUI
 import WidgetKit
-import WidgetKit
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -142,6 +141,7 @@ struct SettingsView: View {
                             .onTapGesture {
                                 selectedLanguage = language
                                 saveLanguageToSharedDefaults(language)
+                                refreshWidgetQuoteForLanguage(language)
                                 HapticManager.shared.selection()
                             }
                         }
@@ -310,6 +310,21 @@ struct SettingsView: View {
         sharedDefaults?.synchronize()
         // Reload widget to reflect language change
         WidgetCenter.shared.reloadAllTimelines()
+    }
+    
+    /// Refresh widget quote text when language changes
+    private func refreshWidgetQuoteForLanguage(_ language: String) {
+        let today = Date()
+        // Check if a quote was already revealed today
+        guard HistoryManager.shared.getCardId(for: today) != nil else {
+            return // No quote revealed today, nothing to refresh
+        }
+        
+        // Get the card in the new language
+        let card = DailyProvider.shared.getCard(for: today, language: language)
+        
+        // Re-save the localized quote for the widget
+        HistoryManager.shared.saveQuoteForWidget(text: card.text, action: card.action, date: today)
     }
     
     private func clampNotificationCount() {
