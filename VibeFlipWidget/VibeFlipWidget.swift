@@ -10,17 +10,20 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> QuoteEntry {
-        QuoteEntry(date: Date(), quote: WidgetQuoteData(text: "Your daily inspiration awaits...", action: nil), isRevealed: true)
+        let language = WidgetDataProvider.getCurrentLanguage()
+        let placeholderText = WidgetStrings.getText("widget_daily_vibe", language: language)
+        return QuoteEntry(date: Date(), quote: WidgetQuoteData(text: placeholderText, action: nil), isRevealed: true, language: language)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (QuoteEntry) -> Void) {
         let entry: QuoteEntry
         let isRevealed = WidgetDataProvider.isTodayQuoteRevealed()
+        let language = WidgetDataProvider.getCurrentLanguage()
         
         if let quote = WidgetDataProvider.getTodayQuote() {
-            entry = QuoteEntry(date: Date(), quote: quote, isRevealed: true)
+            entry = QuoteEntry(date: Date(), quote: quote, isRevealed: true, language: language)
         } else {
-            entry = QuoteEntry(date: Date(), quote: nil, isRevealed: isRevealed)
+            entry = QuoteEntry(date: Date(), quote: nil, isRevealed: isRevealed, language: language)
         }
         
         completion(entry)
@@ -29,12 +32,13 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<QuoteEntry>) -> Void) {
         let currentDate = Date()
         let isRevealed = WidgetDataProvider.isTodayQuoteRevealed()
+        let language = WidgetDataProvider.getCurrentLanguage()
         
         let entry: QuoteEntry
         if let quote = WidgetDataProvider.getTodayQuote() {
-            entry = QuoteEntry(date: currentDate, quote: quote, isRevealed: true)
+            entry = QuoteEntry(date: currentDate, quote: quote, isRevealed: true, language: language)
         } else {
-            entry = QuoteEntry(date: currentDate, quote: nil, isRevealed: isRevealed)
+            entry = QuoteEntry(date: currentDate, quote: nil, isRevealed: isRevealed, language: language)
         }
         
         // Update at midnight for the new day
@@ -50,6 +54,7 @@ struct QuoteEntry: TimelineEntry {
     let date: Date
     let quote: WidgetQuoteData?
     let isRevealed: Bool
+    let language: String  // Include language for proper refresh when language changes
 }
 
 struct VibeFlipWidgetEntryView: View {
@@ -95,20 +100,20 @@ struct VibeFlipWidget: Widget {
 #Preview(as: .systemSmall) {
     VibeFlipWidget()
 } timeline: {
-    QuoteEntry(date: .now, quote: WidgetQuoteData(text: "The only way to do great work is to love what you do.", action: "Take 5 minutes to reflect on what brings you joy."), isRevealed: true)
-    QuoteEntry(date: .now, quote: nil, isRevealed: false)
+    QuoteEntry(date: .now, quote: WidgetQuoteData(text: "The only way to do great work is to love what you do.", action: "Take 5 minutes to reflect on what brings you joy."), isRevealed: true, language: "English")
+    QuoteEntry(date: .now, quote: nil, isRevealed: false, language: "English")
 }
 
 #Preview(as: .systemMedium) {
     VibeFlipWidget()
 } timeline: {
-    QuoteEntry(date: .now, quote: WidgetQuoteData(text: "The only way to do great work is to love what you do.", action: "Take 5 minutes to reflect on what brings you joy."), isRevealed: true)
-    QuoteEntry(date: .now, quote: nil, isRevealed: false)
+    QuoteEntry(date: .now, quote: WidgetQuoteData(text: "The only way to do great work is to love what you do.", action: "Take 5 minutes to reflect on what brings you joy."), isRevealed: true, language: "English")
+    QuoteEntry(date: .now, quote: nil, isRevealed: false, language: "English")
 }
 
 #Preview(as: .systemLarge) {
     VibeFlipWidget()
 } timeline: {
-    QuoteEntry(date: .now, quote: WidgetQuoteData(text: "The only way to do great work is to love what you do.", action: "Take 5 minutes to reflect on what brings you joy."), isRevealed: true)
-    QuoteEntry(date: .now, quote: nil, isRevealed: false)
+    QuoteEntry(date: .now, quote: WidgetQuoteData(text: "The only way to do great work is to love what you do.", action: "Take 5 minutes to reflect on what brings you joy."), isRevealed: true, language: "English")
+    QuoteEntry(date: .now, quote: nil, isRevealed: false, language: "English")
 }

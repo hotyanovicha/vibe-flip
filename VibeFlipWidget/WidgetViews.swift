@@ -14,6 +14,11 @@ struct QuoteRevealedView: View {
     let quote: WidgetQuoteData
     let widgetFamily: WidgetFamily
     
+    // Get current language from shared settings
+    private var currentLanguage: String {
+        WidgetDataProvider.getCurrentLanguage()
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             Spacer(minLength: widgetFamily == .systemSmall ? 8 : 16)
@@ -39,7 +44,7 @@ struct QuoteRevealedView: View {
                             .fill(.primary.opacity(0.1))
                             .frame(width: 32, height: 1)
                         
-                        Text("CHALLENGE")
+                        Text(WidgetStrings.getText("challenge", language: currentLanguage))
                             .font(.system(size: 11, weight: .semibold))
                             .tracking(1.5)
                             .foregroundStyle(.tertiary)
@@ -55,7 +60,7 @@ struct QuoteRevealedView: View {
                 } else if widgetFamily == .systemMedium {
                     // Medium widget - condensed action with label
                     VStack(spacing: 6) {
-                        Text("CHALLENGE")
+                        Text(WidgetStrings.getText("challenge", language: currentLanguage))
                             .font(.system(size: 9, weight: .semibold))
                             .tracking(1.0)
                             .foregroundStyle(.tertiary)
@@ -71,7 +76,7 @@ struct QuoteRevealedView: View {
                 } else {
                     // Small widget - compact action with label
                     VStack(spacing: 4) {
-                        Text("CHALLENGE")
+                        Text(WidgetStrings.getText("challenge", language: currentLanguage))
                             .font(.system(size: 8, weight: .semibold))
                             .tracking(0.5)
                             .foregroundStyle(.tertiary)
@@ -125,6 +130,11 @@ struct QuoteRevealedView: View {
 struct QuoteRevealedNoDataView: View {
     let widgetFamily: WidgetFamily
     
+    // Get current language from shared settings
+    private var currentLanguage: String {
+        WidgetDataProvider.getCurrentLanguage()
+    }
+    
     var body: some View {
         VStack(spacing: widgetFamily == .systemSmall ? 8 : 12) {
             Spacer()
@@ -133,11 +143,11 @@ struct QuoteRevealedNoDataView: View {
                 .font(.system(size: iconSize))
                 .foregroundStyle(.green)
             
-            Text("Quote revealed!")
+            Text(WidgetStrings.getText("widget_quote_revealed", language: currentLanguage))
                 .font(.system(size: titleSize, weight: .medium))
                 .foregroundStyle(.primary)
             
-            Text("Open app to see it here")
+            Text(WidgetStrings.getText("widget_open_app", language: currentLanguage))
                 .font(.system(size: subtitleSize))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -179,6 +189,11 @@ struct QuoteRevealedNoDataView: View {
 struct QuoteNotRevealedView: View {
     let widgetFamily: WidgetFamily
     
+    // Get current language from shared settings
+    private var currentLanguage: String {
+        WidgetDataProvider.getCurrentLanguage()
+    }
+    
     var body: some View {
         VStack(spacing: spacing) {
             Spacer()
@@ -196,12 +211,12 @@ struct QuoteNotRevealedView: View {
             
             // Call to action text
             VStack(spacing: 4) {
-                Text("Your daily vibe")
+                Text(WidgetStrings.getText("widget_daily_vibe", language: currentLanguage))
                     .font(.system(size: titleSize, weight: .semibold))
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                 
-                Text("Tap to reveal")
+                Text(WidgetStrings.getText("widget_tap_to_reveal", language: currentLanguage))
                     .font(.system(size: subtitleSize))
                     .foregroundStyle(.secondary)
             }

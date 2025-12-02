@@ -15,6 +15,7 @@ struct WidgetDataProvider {
     private static let widgetQuoteDateKey = "widgetQuoteDate"
     private static let widgetActionKey = "widgetAction"
     private static let shownCardsKey = "shownCards"
+    private static let selectedLanguageKey = "selectedLanguage"
     
     private static var sharedDefaults: UserDefaults? {
         #if targetEnvironment(simulator)
@@ -71,6 +72,36 @@ struct WidgetDataProvider {
         return false
     }
     
+    /// Get the currently selected language from shared settings
+    /// Falls back to system language detection if not set
+    static func getCurrentLanguage() -> String {
+        if let language = sharedDefaults?.string(forKey: selectedLanguageKey) {
+            return language
+        }
+        
+        // Fallback: detect from system language
+        return detectSystemLanguage()
+    }
+    
+    /// Detect system language and return matching app language
+    private static func detectSystemLanguage() -> String {
+        let preferredLanguages = Locale.preferredLanguages
+        let languageCodeMapping: [String: String] = [
+            "en": "English",
+            "ru": "Русский",
+            "es": "Español"
+        ]
+        
+        for preferredLanguage in preferredLanguages {
+            let languageCode = String(preferredLanguage.prefix(2))
+            if let mappedLanguage = languageCodeMapping[languageCode] {
+                return mappedLanguage
+            }
+        }
+        
+        return "English"
+    }
+    
     private static func dateKey(for date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -82,4 +113,51 @@ struct WidgetDataProvider {
 struct WidgetQuoteData {
     let text: String
     let action: String?
+}
+
+// MARK: - Widget Localization Strings
+
+/// Localized strings for widget UI elements
+struct WidgetStrings {
+    static func getText(_ key: String, language: String) -> String {
+        let dict: [String: [String: String]] = [
+            "challenge": [
+                "Русский": "ВЫЗОВ",
+                "English": "CHALLENGE",
+                "Español": "DESAFÍO"
+            ],
+            "widget_daily_vibe": [
+                "Русский": "Твой вайб дня",
+                "English": "Your daily vibe",
+                "Español": "Tu vibra diaria"
+            ],
+            "widget_tap_to_reveal": [
+                "Русский": "Нажми, чтобы открыть",
+                "English": "Tap to reveal",
+                "Español": "Toca para revelar"
+            ],
+            "widget_quote_revealed": [
+                "Русский": "Цитата открыта!",
+                "English": "Quote revealed!",
+                "Español": "¡Cita revelada!"
+            ],
+            "widget_open_app": [
+                "Русский": "Открой приложение",
+                "English": "Open app to see it here",
+                "Español": "Abre la app para verla"
+            ],
+            "widget_display_name": [
+                "Русский": "Вайб дня",
+                "English": "Daily Vibe",
+                "Español": "Vibra Diaria"
+            ],
+            "widget_description": [
+                "Русский": "Твоя ежедневная мотивационная цитата.",
+                "English": "See your daily motivation quote.",
+                "Español": "Ve tu cita motivacional diaria."
+            ]
+        ]
+        
+        return dict[key]?[language] ?? dict[key]?["English"] ?? key
+    }
 }

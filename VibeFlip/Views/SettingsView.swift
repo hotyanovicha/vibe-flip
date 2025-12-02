@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -14,7 +15,7 @@ struct SettingsView: View {
     @AppStorage("notificationCount") private var notificationCount = 5
     @AppStorage("notificationsEnabled") private var notificationsEnabled = false
     
-    let languages = ["Русский", "English", "Español"]
+    let languages = LanguageManager.supportedLanguages
     
     // MARK: - Notification Computed Properties
     
@@ -130,6 +131,8 @@ struct SettingsView: View {
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 selectedLanguage = language
+                                // Sync language with widget through LanguageManager
+                                LanguageManager.shared.setLanguage(language)
                                 HapticManager.shared.selection()
                             }
                         }
