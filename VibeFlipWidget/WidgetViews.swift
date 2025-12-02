@@ -14,6 +14,14 @@ struct QuoteRevealedView: View {
     let quote: WidgetQuoteData
     let widgetFamily: WidgetFamily
     
+    private var selectedLanguage: String {
+        WidgetDataProvider.getSelectedLanguage()
+    }
+    
+    private var challengeText: String {
+        WidgetLocalizedStrings.getText("challenge", language: selectedLanguage)
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             Spacer(minLength: widgetFamily == .systemSmall ? 8 : 16)
@@ -39,7 +47,7 @@ struct QuoteRevealedView: View {
                             .fill(.primary.opacity(0.1))
                             .frame(width: 32, height: 1)
                         
-                        Text("CHALLENGE")
+                        Text(challengeText)
                             .font(.system(size: 11, weight: .semibold))
                             .tracking(1.5)
                             .foregroundStyle(.tertiary)
@@ -55,7 +63,7 @@ struct QuoteRevealedView: View {
                 } else if widgetFamily == .systemMedium {
                     // Medium widget - condensed action with label
                     VStack(spacing: 6) {
-                        Text("CHALLENGE")
+                        Text(challengeText)
                             .font(.system(size: 9, weight: .semibold))
                             .tracking(1.0)
                             .foregroundStyle(.tertiary)
@@ -71,7 +79,7 @@ struct QuoteRevealedView: View {
                 } else {
                     // Small widget - compact action with label
                     VStack(spacing: 4) {
-                        Text("CHALLENGE")
+                        Text(challengeText)
                             .font(.system(size: 8, weight: .semibold))
                             .tracking(0.5)
                             .foregroundStyle(.tertiary)
@@ -125,6 +133,10 @@ struct QuoteRevealedView: View {
 struct QuoteRevealedNoDataView: View {
     let widgetFamily: WidgetFamily
     
+    private var selectedLanguage: String {
+        WidgetDataProvider.getSelectedLanguage()
+    }
+    
     var body: some View {
         VStack(spacing: widgetFamily == .systemSmall ? 8 : 12) {
             Spacer()
@@ -133,11 +145,11 @@ struct QuoteRevealedNoDataView: View {
                 .font(.system(size: iconSize))
                 .foregroundStyle(.green)
             
-            Text("Quote revealed!")
+            Text(WidgetLocalizedStrings.getText("quote_revealed", language: selectedLanguage))
                 .font(.system(size: titleSize, weight: .medium))
                 .foregroundStyle(.primary)
             
-            Text("Open app to see it here")
+            Text(WidgetLocalizedStrings.getText("open_app_to_see", language: selectedLanguage))
                 .font(.system(size: subtitleSize))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -179,6 +191,10 @@ struct QuoteRevealedNoDataView: View {
 struct QuoteNotRevealedView: View {
     let widgetFamily: WidgetFamily
     
+    private var selectedLanguage: String {
+        WidgetDataProvider.getSelectedLanguage()
+    }
+    
     var body: some View {
         VStack(spacing: spacing) {
             Spacer()
@@ -196,12 +212,12 @@ struct QuoteNotRevealedView: View {
             
             // Call to action text
             VStack(spacing: 4) {
-                Text("Your daily vibe")
+                Text(WidgetLocalizedStrings.getText("your_daily_vibe", language: selectedLanguage))
                     .font(.system(size: titleSize, weight: .semibold))
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                 
-                Text("Tap to reveal")
+                Text(WidgetLocalizedStrings.getText("tap_to_reveal", language: selectedLanguage))
                     .font(.system(size: subtitleSize))
                     .foregroundStyle(.secondary)
             }

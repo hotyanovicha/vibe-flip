@@ -1,13 +1,29 @@
 import SwiftUI
+import WidgetKit
 
 @main
 struct VibeFlipApp: App {
     @Environment(\.scenePhase) var scenePhase
+    @AppStorage("selectedLanguage") private var selectedLanguage = "English"
     @State private var shouldAutoReveal = false
     
     init() {
         // Request notification permissions and schedule notifications on app launch
         NotificationManager.shared.requestAuthorization()
+        // Sync language to shared defaults on app launch
+        syncLanguageToSharedDefaults()
+    }
+    
+    private func syncLanguageToSharedDefaults() {
+        let language = UserDefaults.standard.string(forKey: "selectedLanguage") ?? "English"
+        #if targetEnvironment(simulator)
+        // In simulator, both use standard defaults
+        #else
+        if let sharedDefaults = UserDefaults(suiteName: HistoryManager.appGroupIdentifier) {
+            sharedDefaults.set(language, forKey: "selectedLanguage")
+            sharedDefaults.synchronize()
+        }
+        #endif
     }
     
     var body: some Scene {

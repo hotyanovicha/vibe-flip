@@ -10,7 +10,9 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> QuoteEntry {
-        QuoteEntry(date: Date(), quote: WidgetQuoteData(text: "Your daily inspiration awaits...", action: nil), isRevealed: true)
+        let language = WidgetDataProvider.getSelectedLanguage()
+        let placeholderText = WidgetLocalizedStrings.getText("daily_inspiration_awaits", language: language)
+        QuoteEntry(date: Date(), quote: WidgetQuoteData(text: placeholderText, action: nil), isRevealed: true)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (QuoteEntry) -> Void) {
