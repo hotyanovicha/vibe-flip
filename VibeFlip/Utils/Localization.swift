@@ -114,6 +114,11 @@ struct LocalizedStrings {
                 "Русский": "мин",
                 "English": "min",
                 "Español": "min"
+            ],
+            "challenge_this_world": [
+                "Русский": "Бросай вызов этому миру",
+                "English": "Challenge this world",
+                "Español": "Desafía este mundo"
             ]
         ]
         
